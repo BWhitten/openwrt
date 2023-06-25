@@ -26,42 +26,42 @@ endef
 
 # RK3328 boards
 
-define U-Boot/rk3328/Default
+define U-Boot/Default/rk3328
   BUILD_SUBTARGET:=armv8
   DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3328
   ATF:=rk3328_bl31.elf
 endef
 
 define U-Boot/nanopi-r2c-rk3328
-  $(U-Boot/rk3328/Default)
+  $(U-Boot/Default/rk3328)
   NAME:=NanoPi R2C
   BUILD_DEVICES:= \
     friendlyarm_nanopi-r2c
 endef
 
 define U-Boot/nanopi-r2s-rk3328
-  $(U-Boot/rk3328/Default)
+  $(U-Boot/Default/rk3328)
   NAME:=NanoPi R2S
   BUILD_DEVICES:= \
     friendlyarm_nanopi-r2s
 endef
 
 define U-Boot/orangepi-r1-plus-rk3328
-  $(U-Boot/rk3328/Default)
+  $(U-Boot/Default/rk3328)
   NAME:=Orange Pi R1 Plus
   BUILD_DEVICES:= \
     xunlong_orangepi-r1-plus
 endef
 
 define U-Boot/orangepi-r1-plus-lts-rk3328
-  $(U-Boot/rk3328/Default)
+  $(U-Boot/Default/rk3328)
   NAME:=Orange Pi R1 Plus LTS
   BUILD_DEVICES:= \
     xunlong_orangepi-r1-plus-lts
 endef
 
 define U-Boot/roc-cc-rk3328
-  $(U-Boot/rk3328/Default)
+  $(U-Boot/Default/rk3328)
   NAME:=ROC-RK3328-CC
   BUILD_DEVICES:= \
     firefly_roc-rk3328-cc
@@ -69,38 +69,55 @@ endef
 
 # RK3399 boards
 
-define U-Boot/rk3399/Default
+define U-Boot/Default/rk3399
   BUILD_SUBTARGET:=armv8
   DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3399
   ATF:=rk3399_bl31.elf
 endef
 
 define U-Boot/nanopc-t4-rk3399
-  $(U-Boot/rk3399/Default)
+  $(U-Boot/Default/rk3399)
   NAME:=NanoPC T4
   BUILD_DEVICES:= \
     friendlyarm_nanopc-t4
 endef
 
 define U-Boot/nanopi-r4s-rk3399
-  $(U-Boot/rk3399/Default)
+  $(U-Boot/Default/rk3399)
   NAME:=NanoPi R4S
   BUILD_DEVICES:= \
     friendlyarm_nanopi-r4s
 endef
 
 define U-Boot/rock-pi-4-rk3399
-  $(U-Boot/rk3399/Default)
+  $(U-Boot/Default/rk3399)
   NAME:=Rock Pi 4
   BUILD_DEVICES:= \
     radxa_rock-pi-4a
 endef
 
 define U-Boot/rockpro64-rk3399
-  $(U-Boot/rk3399/Default)
+  $(U-Boot/Default/rk3399)
   NAME:=RockPro64
   BUILD_DEVICES:= \
     pine64_rockpro64
+endef
+
+
+# RK3568 boards
+
+define U-Boot/Default/rk3568
+  BUILD_SUBTARGET:=armv8
+  DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3568
+  ATF:=rk3568_bl31_v1.43.elf
+  TPL:=rk3568_ddr_1560MHz_v1.18.bin
+endef
+
+define U-Boot/nanopi-r5s-rk3568
+  $(U-Boot/Default/rk3568)
+  NAME:=NanoPi R5S
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r5s
 endef
 
 UBOOT_TARGETS := \
@@ -112,7 +129,8 @@ UBOOT_TARGETS := \
   nanopi-r2s-rk3328 \
   orangepi-r1-plus-rk3328 \
   orangepi-r1-plus-lts-rk3328 \
-  roc-cc-rk3328
+  roc-cc-rk3328 \
+  nanopi-r5s-rk3568
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
@@ -123,7 +141,8 @@ UBOOT_CUSTOMIZE_CONFIG := \
 
 UBOOT_MAKE_FLAGS += \
   PATH=$(STAGING_DIR_HOST)/bin:$(PATH) \
-  BL31=$(STAGING_DIR_IMAGE)/$(ATF)
+  BL31=$(STAGING_DIR_IMAGE)/$(ATF) \
+  $(if $(TPL),ROCKCHIP_TPL=$(STAGING_DIR_IMAGE)/$(TPL))
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(STAGING_DIR_IMAGE)
