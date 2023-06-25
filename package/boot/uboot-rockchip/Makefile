@@ -113,6 +113,13 @@ define U-Boot/Default/rk3568
   TPL:=rk3568_ddr_1560MHz_v1.18.bin
 endef
 
+define U-Boot/nanopi-r5c-rk3568
+  $(U-Boot/Default/rk3568)
+  NAME:=NanoPi R5C
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r5c
+endef
+
 define U-Boot/nanopi-r5s-rk3568
   $(U-Boot/Default/rk3568)
   NAME:=NanoPi R5S
@@ -130,6 +137,7 @@ UBOOT_TARGETS := \
   orangepi-r1-plus-rk3328 \
   orangepi-r1-plus-lts-rk3328 \
   roc-cc-rk3328 \
+  nanopi-r5c-rk3568 \
   nanopi-r5s-rk3568
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
