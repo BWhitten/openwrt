@@ -96,6 +96,23 @@ define U-Boot/rockpro64-rk3399
     pine64_rockpro64
 endef
 
+
+# RK3568 boards
+
+define U-Boot/Default/rk3568
+  BUILD_SUBTARGET:=armv8
+  DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3568
+  ATF:=rk3568_bl31_v1.42.elf
+  TPL:=rk3568_ddr_1560MHz_v1.16.bin
+endef
+
+define U-Boot/nanopi-r5s-rk3568
+  $(U-Boot/Default/rk3568)
+  NAME:=FriendlyARM NanoPi R5S
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r5s
+endef
+
 UBOOT_TARGETS := \
   nanopi-r4s-rk3399 \
   rock-pi-4-rk3399 \
@@ -104,7 +121,8 @@ UBOOT_TARGETS := \
   nanopi-r2s-rk3328 \
   orangepi-r1-plus-rk3328 \
   orangepi-r1-plus-lts-rk3328 \
-  roc-cc-rk3328
+  roc-cc-rk3328 \
+  nanopi-r5s-rk3568
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
@@ -115,7 +133,8 @@ UBOOT_CUSTOMIZE_CONFIG := \
 
 UBOOT_MAKE_FLAGS += \
   PATH=$(STAGING_DIR_HOST)/bin:$(PATH) \
-  BL31=$(STAGING_DIR_IMAGE)/$(ATF)
+  BL31=$(STAGING_DIR_IMAGE)/$(ATF) \
+  $(if $(TPL),ROCKCHIP_TPL=$(STAGING_DIR_IMAGE)/$(TPL))
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(STAGING_DIR_IMAGE)
