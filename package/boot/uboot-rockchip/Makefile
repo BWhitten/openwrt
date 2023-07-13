@@ -122,7 +122,7 @@ endef
 
 # RK3588 boards
 
-define U-Boot/Default/rk3568
+define U-Boot/Default/rk3588
   BUILD_SUBTARGET:=armv8
   DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3588
   ATF:=rk3588_bl31_v1.38.elf
