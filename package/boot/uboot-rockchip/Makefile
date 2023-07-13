@@ -120,6 +120,22 @@ define U-Boot/nanopi-r5s-rk3568
     friendlyarm_nanopi-r5s
 endef
 
+# RK3588 boards
+
+define U-Boot/Default/rk3568
+  BUILD_SUBTARGET:=armv8
+  DEPENDS:=+PACKAGE_u-boot-$(1):trusted-firmware-a-rk3588
+  ATF:=rk3588_bl31_v1.38.elf
+  TPL:=rk3588_ddr_lp4_2112MHz_lp5_2736MHz_v1.11.bin
+endef
+
+define U-Boot/nanopi-r6s-rk3588
+  $(U-Boot/Default/rk3588)
+  NAME:=FriendlyARM NanoPi R6S
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r6s
+endef
+
 UBOOT_TARGETS := \
   nanopi-r4s-rk3399 \
   rock-pi-4-rk3399 \
@@ -130,7 +146,8 @@ UBOOT_TARGETS := \
   orangepi-r1-plus-lts-rk3328 \
   roc-cc-rk3328 \
   nanopi-r5c-rk3568 \
-  nanopi-r5s-rk3568
+  nanopi-r5s-rk3568 \
+  nanopi-r6s-rk3588
 
 UBOOT_CONFIGURE_VARS += USE_PRIVATE_LIBGCC=yes
 
