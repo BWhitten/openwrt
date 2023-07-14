@@ -115,11 +115,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/clk/rockchip/clk.h |  2 --
  2 files changed, 6 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/clk/rockchip/clk.c b/drivers/clk/rockchip/clk.c
-index e63d4f20b479..1aed6f254ccd 100644
 --- a/drivers/clk/rockchip/clk.c
 +++ b/drivers/clk/rockchip/clk.c
-@@ -198,6 +198,12 @@ static void rockchip_fractional_approximation(struct clk_hw *hw,
+@@ -198,6 +198,12 @@ static void rockchip_fractional_approxim
  	clk_fractional_divider_general_approximation(hw, rate, parent_rate, m, n);
  }
  
@@ -132,7 +130,7 @@ index e63d4f20b479..1aed6f254ccd 100644
  static struct clk *rockchip_clk_register_frac_branch(
  		struct rockchip_clk_provider *ctx, const char *name,
  		const char *const *parent_names, u8 num_parents,
-@@ -401,14 +407,6 @@ void rockchip_clk_of_add_provider(struct device_node *np,
+@@ -401,14 +407,6 @@ void rockchip_clk_of_add_provider(struct
  }
  EXPORT_SYMBOL_GPL(rockchip_clk_of_add_provider);
  
@@ -147,11 +145,9 @@ index e63d4f20b479..1aed6f254ccd 100644
  void rockchip_clk_register_plls(struct rockchip_clk_provider *ctx,
  				struct rockchip_pll_clock *list,
  				unsigned int nr_pll, int grf_lock_offset)
-diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
-index 24d3e56d3f71..6e84ab85b372 100644
 --- a/drivers/clk/rockchip/clk.h
 +++ b/drivers/clk/rockchip/clk.h
-@@ -928,8 +928,6 @@ struct rockchip_clk_provider *rockchip_clk_init(struct device_node *np,
+@@ -928,8 +928,6 @@ struct rockchip_clk_provider *rockchip_c
  			void __iomem *base, unsigned long nr_clks);
  void rockchip_clk_of_add_provider(struct device_node *np,
  				struct rockchip_clk_provider *ctx);

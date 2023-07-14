@@ -19,8 +19,6 @@ Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
  Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
-index 7e36e389e976..93beb3169ce5 100644
 --- a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
 +++ b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
 @@ -79,6 +79,10 @@ properties:
@@ -34,6 +32,3 @@ index 7e36e389e976..93beb3169ce5 100644
    rockchip,capture-channels:
      $ref: /schemas/types.yaml#/definitions/uint32
      default: 2
--- 
-2.34.1
-

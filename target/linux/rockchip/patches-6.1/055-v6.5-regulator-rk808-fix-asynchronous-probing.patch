@@ -113,11 +113,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/regulator/rk808-regulator.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
-index 3637e81654a8..80ba782d8923 100644
 --- a/drivers/regulator/rk808-regulator.c
 +++ b/drivers/regulator/rk808-regulator.c
-@@ -1336,6 +1336,7 @@ static int rk808_regulator_probe(struct platform_device *pdev)
+@@ -1336,6 +1336,7 @@ static int rk808_regulator_probe(struct
  
  	config.dev = &pdev->dev;
  	config.dev->of_node = pdev->dev.parent->of_node;

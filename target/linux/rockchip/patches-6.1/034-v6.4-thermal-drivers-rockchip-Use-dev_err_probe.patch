@@ -14,11 +14,9 @@ Link: https://lore.kernel.org/r/20230308112253.15659-4-sebastian.reichel@collabo
  drivers/thermal/rockchip_thermal.c | 50 +++++++++++-------------------
  1 file changed, 18 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
-index 0a7e47e62ab30f..472212dea6c655 100644
 --- a/drivers/thermal/rockchip_thermal.c
 +++ b/drivers/thermal/rockchip_thermal.c
-@@ -1374,35 +1374,26 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
+@@ -1379,35 +1379,26 @@ static int rockchip_thermal_probe(struct
  		return PTR_ERR(thermal->regs);
  
  	thermal->reset = devm_reset_control_array_get(&pdev->dev, false, false);
@@ -66,7 +64,7 @@ index 0a7e47e62ab30f..472212dea6c655 100644
  
  	thermal->chip->initialize(thermal->grf, thermal->regs,
  				  thermal->tshut_polarity);
-@@ -1411,23 +1402,18 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
+@@ -1416,23 +1407,18 @@ static int rockchip_thermal_probe(struct
  		error = rockchip_thermal_register_sensor(pdev, thermal,
  						&thermal->sensors[i],
  						thermal->chip->chn_id[i]);

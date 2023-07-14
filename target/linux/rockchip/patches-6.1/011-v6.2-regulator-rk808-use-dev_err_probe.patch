@@ -15,11 +15,9 @@ Signed-off-by: Mark Brown <broonie@kernel.org>
  drivers/regulator/rk808-regulator.c | 8 +++-----
  1 file changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
-index ce9c64cadebacb..fa9fc1aa1ae3f9 100644
 --- a/drivers/regulator/rk808-regulator.c
 +++ b/drivers/regulator/rk808-regulator.c
-@@ -1343,11 +1343,9 @@ static int rk808_regulator_probe(struct platform_device *pdev)
+@@ -1343,11 +1343,9 @@ static int rk808_regulator_probe(struct
  	for (i = 0; i < nregulators; i++) {
  		rk808_rdev = devm_regulator_register(&pdev->dev,
  						     &regulators[i], &config);

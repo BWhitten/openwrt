@@ -17,8 +17,6 @@ Signed-off-by: Vinod Koul <vkoul@kernel.org>
  .../rockchip/phy-rockchip-naneng-combphy.c    | 184 ++++++++++++++++++
  1 file changed, 184 insertions(+)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-index 7b213825fb5d51..7b8b001e4f9e37 100644
 --- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
 +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
 @@ -63,6 +63,9 @@
@@ -42,7 +40,7 @@ index 7b213825fb5d51..7b8b001e4f9e37 100644
  };
  
  struct rockchip_combphy_cfg {
-@@ -559,11 +565,189 @@ static const struct rockchip_combphy_cfg rk3568_combphy_cfgs = {
+@@ -559,11 +565,189 @@ static const struct rockchip_combphy_cfg
  	.combphy_cfg	= rk3568_combphy_cfg,
  };
  

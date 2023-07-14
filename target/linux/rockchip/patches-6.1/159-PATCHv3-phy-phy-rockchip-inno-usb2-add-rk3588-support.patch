@@ -104,8 +104,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 226 ++++++++++++++++--
  1 file changed, 211 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index a0bc10aa7961..2c4683c67a8e 100644
 --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
 +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
 @@ -116,6 +116,12 @@ struct rockchip_chg_det_reg {
@@ -150,7 +148,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  	int		bvalid_irq;
  	int		id_irq;
  	int		ls_irq;
-@@ -405,6 +419,27 @@ static int rockchip_usb2phy_extcon_register(struct rockchip_usb2phy *rphy)
+@@ -405,6 +419,27 @@ static int rockchip_usb2phy_extcon_regis
  	return 0;
  }
  
@@ -178,7 +176,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  static int rockchip_usb2phy_init(struct phy *phy)
  {
  	struct rockchip_usb2phy_port *rport = phy_get_drvdata(phy);
-@@ -449,6 +484,15 @@ static int rockchip_usb2phy_init(struct phy *phy)
+@@ -449,6 +484,15 @@ static int rockchip_usb2phy_init(struct
  			dev_dbg(&rport->phy->dev, "mode %d\n", rport->mode);
  		}
  	} else if (rport->port_id == USB2PHY_PORT_HOST) {
@@ -194,7 +192,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  		/* clear linestate and enable linestate detect irq */
  		ret = property_enable(rphy->grf,
  				      &rport->port_cfg->ls_det_clr, true);
-@@ -810,9 +854,7 @@ static void rockchip_usb2phy_sm_work(struct work_struct *work)
+@@ -810,9 +854,7 @@ static void rockchip_usb2phy_sm_work(str
  	struct rockchip_usb2phy_port *rport =
  		container_of(work, struct rockchip_usb2phy_port, sm_work.work);
  	struct rockchip_usb2phy *rphy = dev_get_drvdata(rport->phy->dev.parent);
@@ -205,7 +203,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  	unsigned int ul_mask, uhd_mask;
  	int ret;
  
-@@ -822,18 +864,26 @@ static void rockchip_usb2phy_sm_work(struct work_struct *work)
+@@ -822,18 +864,26 @@ static void rockchip_usb2phy_sm_work(str
  	if (ret < 0)
  		goto next_schedule;
  
@@ -241,7 +239,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  
  	switch (state) {
  	case PHY_STATE_HS_ONLINE:
-@@ -966,6 +1016,31 @@ static irqreturn_t rockchip_usb2phy_otg_mux_irq(int irq, void *data)
+@@ -966,6 +1016,31 @@ static irqreturn_t rockchip_usb2phy_otg_
  	return ret;
  }
  
@@ -273,7 +271,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  static irqreturn_t rockchip_usb2phy_irq(int irq, void *data)
  {
  	struct rockchip_usb2phy *rphy = data;
-@@ -978,6 +1053,10 @@ static irqreturn_t rockchip_usb2phy_irq(int irq, void *data)
+@@ -978,6 +1053,10 @@ static irqreturn_t rockchip_usb2phy_irq(
  		if (!rport->phy)
  			continue;
  
@@ -284,7 +282,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  		switch (rport->port_id) {
  		case USB2PHY_PORT_OTG:
  			if (rport->mode != USB_DR_MODE_HOST &&
-@@ -1233,7 +1312,7 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
+@@ -1233,7 +1312,7 @@ static int rockchip_usb2phy_probe(struct
  	}
  
  	/* support address_cells=2 */
@@ -293,7 +291,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  		if (of_property_read_u32_index(np, "reg", 1, &reg)) {
  			dev_err(dev, "the reg property is not assigned in %pOFn node\n",
  				np);
-@@ -1254,14 +1333,14 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
+@@ -1254,14 +1333,14 @@ static int rockchip_usb2phy_probe(struct
  
  	/* find out a proper config which can be matched with dt. */
  	index = 0;
@@ -310,7 +308,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  
  	if (!rphy->phy_cfg) {
  		dev_err(dev, "no phy-config can be matched with %pOFn node\n",
-@@ -1664,6 +1743,122 @@ static const struct rockchip_usb2phy_cfg rk3568_phy_cfgs[] = {
+@@ -1664,6 +1743,122 @@ static const struct rockchip_usb2phy_cfg
  	{ /* sentinel */ }
  };
  
@@ -433,7 +431,7 @@ index a0bc10aa7961..2c4683c67a8e 100644
  static const struct rockchip_usb2phy_cfg rv1108_phy_cfgs[] = {
  	{
  		.reg = 0x100,
-@@ -1714,6 +1909,7 @@ static const struct of_device_id rockchip_usb2phy_dt_match[] = {
+@@ -1714,6 +1909,7 @@ static const struct of_device_id rockchi
  	{ .compatible = "rockchip,rk3366-usb2phy", .data = &rk3366_phy_cfgs },
  	{ .compatible = "rockchip,rk3399-usb2phy", .data = &rk3399_phy_cfgs },
  	{ .compatible = "rockchip,rk3568-usb2phy", .data = &rk3568_phy_cfgs },

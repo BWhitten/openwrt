@@ -30,11 +30,9 @@ Link: https://lore.kernel.org/r/20230418142109.49762-2-sebastian.reichel@collabo
  drivers/irqchip/irq-gic-v3-its.c       | 35 ++++++++++++++++++++++++++
  3 files changed, 48 insertions(+)
 
-diff --git a/Documentation/arm64/silicon-errata.rst b/Documentation/arm64/silicon-errata.rst
-index e31f6c0687041b..9e311bc43e05ea 100644
 --- a/Documentation/arm64/silicon-errata.rst
 +++ b/Documentation/arm64/silicon-errata.rst
-@@ -207,6 +207,9 @@ stable kernels.
+@@ -205,6 +205,9 @@ stable kernels.
  +----------------+-----------------+-----------------+-----------------------------+
  | Qualcomm Tech. | Kryo4xx Gold    | N/A             | ARM64_ERRATUM_1286807       |
  +----------------+-----------------+-----------------+-----------------------------+
@@ -44,11 +42,9 @@ index e31f6c0687041b..9e311bc43e05ea 100644
  
  +----------------+-----------------+-----------------+-----------------------------+
  | Fujitsu        | A64FX           | E#010001        | FUJITSU_ERRATUM_010001      |
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 1023e896d46b89..02789215d2510b 100644
 --- a/arch/arm64/Kconfig
 +++ b/arch/arm64/Kconfig
-@@ -1150,6 +1150,16 @@ config NVIDIA_CARMEL_CNP_ERRATUM
+@@ -1124,6 +1124,16 @@ config NVIDIA_CARMEL_CNP_ERRATUM
  
  	  If unsure, say Y.
  
@@ -65,8 +61,6 @@ index 1023e896d46b89..02789215d2510b 100644
  config SOCIONEXT_SYNQUACER_PREITS
  	bool "Socionext Synquacer: Workaround for GICv3 pre-ITS"
  	default y
-diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-index 586271b8aa394d..fa4641a5dfd809 100644
 --- a/drivers/irqchip/irq-gic-v3-its.c
 +++ b/drivers/irqchip/irq-gic-v3-its.c
 @@ -42,9 +42,11 @@
@@ -81,7 +75,7 @@ index 586271b8aa394d..fa4641a5dfd809 100644
  
  #define RD_LOCAL_LPI_ENABLED                    BIT(0)
  #define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
-@@ -2359,6 +2361,9 @@ static int its_setup_baser(struct its_node *its, struct its_baser *baser,
+@@ -2359,6 +2361,9 @@ retry_baser:
  	its_write_baser(its, baser, val);
  	tmp = baser->val;
  
@@ -111,7 +105,7 @@ index 586271b8aa394d..fa4641a5dfd809 100644
  	if (!(tmp & GICR_PENDBASER_SHAREABILITY_MASK)) {
  		/*
  		 * The HW reports non-shareable, we must remove the
-@@ -4710,6 +4721,19 @@ static bool __maybe_unused its_enable_quirk_hip07_161600802(void *data)
+@@ -4710,6 +4721,19 @@ static bool __maybe_unused its_enable_qu
  	return true;
  }
  
@@ -131,11 +125,10 @@ index 586271b8aa394d..fa4641a5dfd809 100644
  static const struct gic_quirk its_quirks[] = {
  #ifdef CONFIG_CAVIUM_ERRATUM_22375
  	{
-@@ -4755,6 +4779,14 @@ static const struct gic_quirk its_quirks[] = {
- 		.mask	= 0xffffffff,
+@@ -4756,6 +4780,14 @@ static const struct gic_quirk its_quirks
  		.init	= its_enable_quirk_hip07_161600802,
  	},
-+#endif
+ #endif
 +#ifdef CONFIG_ROCKCHIP_ERRATUM_3588001
 +	{
 +		.desc   = "ITS: Rockchip erratum RK3588001",
@@ -143,10 +136,11 @@ index 586271b8aa394d..fa4641a5dfd809 100644
 +		.mask   = 0xffffffff,
 +		.init   = its_enable_rk3588001,
 +	},
- #endif
++#endif
  	{
  	}
-@@ -5096,6 +5128,9 @@ static int __init its_probe_one(struct resource *res,
+ };
+@@ -5095,6 +5127,9 @@ static int __init its_probe_one(struct r
  	gits_write_cbaser(baser, its->base + GITS_CBASER);
  	tmp = gits_read_cbaser(its->base + GITS_CBASER);
  

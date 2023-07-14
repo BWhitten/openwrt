@@ -119,11 +119,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  5 files changed, 614 insertions(+), 3 deletions(-)
  create mode 100644 drivers/mfd/rk8xx-spi.c
 
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index de53e6c701fd..d4879cb4e1f6 100644
 --- a/drivers/mfd/Kconfig
 +++ b/drivers/mfd/Kconfig
-@@ -1201,6 +1201,20 @@ config MFD_RK8XX_I2C
+@@ -1220,6 +1220,20 @@ config MFD_RK8XX_I2C
  	  through I2C interface. The device supports multiple sub-devices
  	  including interrupts, RTC, LDO & DCDC regulators, and onkey.
  
@@ -144,11 +142,9 @@ index de53e6c701fd..d4879cb4e1f6 100644
  config MFD_RN5T618
  	tristate "Ricoh RN5T567/618 PMIC"
  	depends on I2C
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index ba373193e999..4e666ef5b7fc 100644
 --- a/drivers/mfd/Makefile
 +++ b/drivers/mfd/Makefile
-@@ -216,6 +216,7 @@ obj-$(CONFIG_MFD_NTXEC)		+= ntxec.o
+@@ -225,6 +225,7 @@ obj-$(CONFIG_MFD_NTXEC)		+= ntxec.o
  obj-$(CONFIG_MFD_RC5T583)	+= rc5t583.o rc5t583-irq.o
  obj-$(CONFIG_MFD_RK8XX)		+= rk8xx-core.o
  obj-$(CONFIG_MFD_RK8XX_I2C)	+= rk8xx-i2c.o
@@ -156,11 +152,9 @@ index ba373193e999..4e666ef5b7fc 100644
  obj-$(CONFIG_MFD_RN5T618)	+= rn5t618.o
  obj-$(CONFIG_MFD_SEC_CORE)	+= sec-core.o sec-irq.o
  obj-$(CONFIG_MFD_SYSCON)	+= syscon.o
-diff --git a/drivers/mfd/rk8xx-core.c b/drivers/mfd/rk8xx-core.c
-index ddf2052c5190..e8fc9e2ab1d0 100644
 --- a/drivers/mfd/rk8xx-core.c
 +++ b/drivers/mfd/rk8xx-core.c
-@@ -37,6 +37,11 @@ static const struct resource rk805_key_resources[] = {
+@@ -37,6 +37,11 @@ static const struct resource rk805_key_r
  	DEFINE_RES_IRQ(RK805_IRQ_PWRON_FALL),
  };
  
@@ -172,7 +166,7 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
  static const struct resource rk817_pwrkey_resources[] = {
  	DEFINE_RES_IRQ(RK817_IRQ_PWRON_RISE),
  	DEFINE_RES_IRQ(RK817_IRQ_PWRON_FALL),
-@@ -64,6 +69,17 @@ static const struct mfd_cell rk805s[] = {
+@@ -62,6 +67,17 @@ static const struct mfd_cell rk805s[] =
  	},
  };
  
@@ -188,9 +182,9 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
 +};
 +
  static const struct mfd_cell rk808s[] = {
- 	{ .name = "rk808-clkout", .id = PLATFORM_DEVID_NONE, },
- 	{ .name = "rk808-regulator", .id = PLATFORM_DEVID_NONE, },
-@@ -123,6 +139,12 @@ static const struct rk808_reg_data rk805_pre_init_reg[] = {
+ 	{ .name = "rk808-clkout", },
+ 	{ .name = "rk808-regulator", },
+@@ -116,6 +132,12 @@ static const struct rk808_reg_data rk805
  	{RK805_THERMAL_REG, TEMP_HOTDIE_MSK, TEMP115C},
  };
  
@@ -203,7 +197,7 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
  static const struct rk808_reg_data rk808_pre_init_reg[] = {
  	{ RK808_BUCK3_CONFIG_REG, BUCK_ILMIN_MASK,  BUCK_ILMIN_150MA },
  	{ RK808_BUCK4_CONFIG_REG, BUCK_ILMIN_MASK,  BUCK_ILMIN_200MA },
-@@ -273,6 +295,27 @@ static const struct regmap_irq rk805_irqs[] = {
+@@ -266,6 +288,27 @@ static const struct regmap_irq rk805_irq
  	},
  };
  
@@ -231,7 +225,7 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
  static const struct regmap_irq rk808_irqs[] = {
  	/* INT_STS */
  	[RK808_IRQ_VOUT_LO] = {
-@@ -423,6 +466,18 @@ static struct regmap_irq_chip rk805_irq_chip = {
+@@ -416,6 +459,18 @@ static struct regmap_irq_chip rk805_irq_
  	.init_ack_masked = true,
  };
  
@@ -250,7 +244,7 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
  static const struct regmap_irq_chip rk808_irq_chip = {
  	.name = "rk808",
  	.irqs = rk808_irqs,
-@@ -549,6 +604,7 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
+@@ -542,6 +597,7 @@ int rk8xx_probe(struct device *dev, int
  	struct rk808 *rk808;
  	const struct rk808_reg_data *pre_init_reg;
  	const struct mfd_cell *cells;
@@ -258,7 +252,7 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
  	int nr_pre_init_regs;
  	int nr_cells;
  	int ret;
-@@ -570,6 +626,14 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
+@@ -563,6 +619,14 @@ int rk8xx_probe(struct device *dev, int
  		cells = rk805s;
  		nr_cells = ARRAY_SIZE(rk805s);
  		break;
@@ -273,7 +267,7 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
  	case RK808_ID:
  		rk808->regmap_irq_chip = &rk808_irq_chip;
  		pre_init_reg = rk808_pre_init_reg;
-@@ -601,7 +665,7 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
+@@ -594,7 +658,7 @@ int rk8xx_probe(struct device *dev, int
  		return dev_err_probe(dev, -EINVAL, "No interrupt support, no core IRQ\n");
  
  	ret = devm_regmap_add_irq_chip(dev, rk808->regmap, irq,
@@ -282,7 +276,7 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
  				       rk808->regmap_irq_chip, &rk808->irq_data);
  	if (ret)
  		return dev_err_probe(dev, ret, "Failed to add irq_chip\n");
-@@ -616,8 +680,7 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
+@@ -609,8 +673,7 @@ int rk8xx_probe(struct device *dev, int
  					     pre_init_reg[i].addr);
  	}
  
@@ -292,9 +286,6 @@ index ddf2052c5190..e8fc9e2ab1d0 100644
  			      regmap_irq_get_domain(rk808->irq_data));
  	if (ret)
  		return dev_err_probe(dev, ret, "failed to add MFD devices\n");
-diff --git a/drivers/mfd/rk8xx-spi.c b/drivers/mfd/rk8xx-spi.c
-new file mode 100644
-index 000000000000..fd137f38c2c4
 --- /dev/null
 +++ b/drivers/mfd/rk8xx-spi.c
 @@ -0,0 +1,124 @@
@@ -422,8 +413,6 @@ index 000000000000..fd137f38c2c4
 +MODULE_AUTHOR("Xu Shengfei <xsf@rock-chips.com>");
 +MODULE_DESCRIPTION("RK8xx SPI PMIC driver");
 +MODULE_LICENSE("GPL");
-diff --git a/include/linux/mfd/rk808.h b/include/linux/mfd/rk808.h
-index 4183427a80fe..78e167a92483 100644
 --- a/include/linux/mfd/rk808.h
 +++ b/include/linux/mfd/rk808.h
 @@ -289,6 +289,414 @@ enum rk805_reg {

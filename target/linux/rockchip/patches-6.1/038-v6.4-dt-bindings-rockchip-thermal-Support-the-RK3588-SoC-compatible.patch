@@ -15,8 +15,6 @@ Link: https://lore.kernel.org/r/20230308112253.15659-8-sebastian.reichel@collabo
  Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
-index f6c1be226aaa90..55f8ec0bec0133 100644
 --- a/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
 +++ b/Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml
 @@ -19,6 +19,7 @@ properties:

@@ -131,11 +131,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/clk/rockchip/clk.h     |  2 ++
  2 files changed, 43 insertions(+)
 
-diff --git a/drivers/clk/rockchip/clk-cpu.c b/drivers/clk/rockchip/clk-cpu.c
-index 11aa2259b532..6ea7fba9f9e5 100644
 --- a/drivers/clk/rockchip/clk-cpu.c
 +++ b/drivers/clk/rockchip/clk-cpu.c
-@@ -113,6 +113,42 @@ static void rockchip_cpuclk_set_dividers(struct rockchip_cpuclk *cpuclk,
+@@ -113,6 +113,42 @@ static void rockchip_cpuclk_set_dividers
  	}
  }
  
@@ -178,7 +176,7 @@ index 11aa2259b532..6ea7fba9f9e5 100644
  static int rockchip_cpuclk_pre_rate_change(struct rockchip_cpuclk *cpuclk,
  					   struct clk_notifier_data *ndata)
  {
-@@ -165,6 +201,9 @@ static int rockchip_cpuclk_pre_rate_change(struct rockchip_cpuclk *cpuclk,
+@@ -165,6 +201,9 @@ static int rockchip_cpuclk_pre_rate_chan
  			       cpuclk->reg_base + reg_data->core_reg[i]);
  		}
  	}
@@ -188,7 +186,7 @@ index 11aa2259b532..6ea7fba9f9e5 100644
  	/* select alternate parent */
  	if (reg_data->mux_core_reg)
  		writel(HIWORD_UPDATE(reg_data->mux_core_alt,
-@@ -219,6 +258,8 @@ static int rockchip_cpuclk_post_rate_change(struct rockchip_cpuclk *cpuclk,
+@@ -219,6 +258,8 @@ static int rockchip_cpuclk_post_rate_cha
  				     reg_data->mux_core_shift),
  		       cpuclk->reg_base + reg_data->core_reg[0]);
  
@@ -197,8 +195,6 @@ index 11aa2259b532..6ea7fba9f9e5 100644
  	/* remove dividers */
  	for (i = 0; i < reg_data->num_cores; i++) {
  		writel(HIWORD_UPDATE(0, reg_data->div_core_mask[i],
-diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
-index 6eb31d36c4cd..24d3e56d3f71 100644
 --- a/drivers/clk/rockchip/clk.h
 +++ b/drivers/clk/rockchip/clk.h
 @@ -399,6 +399,8 @@ struct rockchip_cpuclk_clksel {

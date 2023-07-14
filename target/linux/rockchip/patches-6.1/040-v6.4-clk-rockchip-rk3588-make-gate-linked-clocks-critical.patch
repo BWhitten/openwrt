@@ -40,11 +40,9 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  drivers/clk/rockchip/clk-rk3588.c | 42 +++++++++++++++++++------------
  1 file changed, 26 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-index b7ce3fbd6fa6a4..6994165e03957c 100644
 --- a/drivers/clk/rockchip/clk-rk3588.c
 +++ b/drivers/clk/rockchip/clk-rk3588.c
-@@ -13,15 +13,25 @@
+@@ -14,15 +14,25 @@
  #include "clk.h"
  
  /*
@@ -76,7 +74,7 @@ index b7ce3fbd6fa6a4..6994165e03957c 100644
  
  
  #define RK3588_GRF_SOC_STATUS0		0x600
-@@ -1446,7 +1456,7 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
+@@ -1447,7 +1457,7 @@ static struct rockchip_clk_branch rk3588
  	COMPOSITE_NODIV(HCLK_NVM_ROOT,  "hclk_nvm_root", mux_200m_100m_50m_24m_p, 0,
  			RK3588_CLKSEL_CON(77), 0, 2, MFLAGS,
  			RK3588_CLKGATE_CON(31), 0, GFLAGS),
@@ -85,7 +83,7 @@ index b7ce3fbd6fa6a4..6994165e03957c 100644
  			RK3588_CLKSEL_CON(77), 7, 1, MFLAGS, 2, 5, DFLAGS,
  			RK3588_CLKGATE_CON(31), 1, GFLAGS),
  	GATE(ACLK_EMMC, "aclk_emmc", "aclk_nvm_root", 0,
-@@ -1675,13 +1685,13 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
+@@ -1676,13 +1686,13 @@ static struct rockchip_clk_branch rk3588
  			RK3588_CLKGATE_CON(42), 9, GFLAGS),
  
  	/* vdpu */
@@ -101,7 +99,7 @@ index b7ce3fbd6fa6a4..6994165e03957c 100644
  			RK3588_CLKSEL_CON(98), 9, 2, MFLAGS,
  			RK3588_CLKGATE_CON(44), 2, GFLAGS),
  	COMPOSITE(ACLK_JPEG_DECODER_ROOT, "aclk_jpeg_decoder_root", gpll_cpll_aupll_spll_p, 0,
-@@ -1732,9 +1742,9 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
+@@ -1733,9 +1743,9 @@ static struct rockchip_clk_branch rk3588
  	COMPOSITE(ACLK_RKVENC0_ROOT, "aclk_rkvenc0_root", gpll_cpll_npll_p, 0,
  			RK3588_CLKSEL_CON(102), 7, 2, MFLAGS, 2, 5, DFLAGS,
  			RK3588_CLKGATE_CON(47), 1, GFLAGS),
@@ -113,7 +111,7 @@ index b7ce3fbd6fa6a4..6994165e03957c 100644
  			RK3588_CLKGATE_CON(47), 5, GFLAGS),
  	COMPOSITE(CLK_RKVENC0_CORE, "clk_rkvenc0_core", gpll_cpll_aupll_npll_p, 0,
  			RK3588_CLKSEL_CON(102), 14, 2, MFLAGS, 9, 5, DFLAGS,
-@@ -1744,10 +1754,10 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
+@@ -1745,10 +1755,10 @@ static struct rockchip_clk_branch rk3588
  			RK3588_CLKGATE_CON(48), 6, GFLAGS),
  
  	/* vi */
@@ -126,7 +124,7 @@ index b7ce3fbd6fa6a4..6994165e03957c 100644
  			RK3588_CLKSEL_CON(106), 8, 2, MFLAGS,
  			RK3588_CLKGATE_CON(49), 1, GFLAGS),
  	COMPOSITE_NODIV(PCLK_VI_ROOT, "pclk_vi_root", mux_100m_50m_24m_p, 0,
-@@ -1919,10 +1929,10 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
+@@ -1920,10 +1930,10 @@ static struct rockchip_clk_branch rk3588
  	COMPOSITE(ACLK_VOP_ROOT, "aclk_vop_root", gpll_cpll_dmyaupll_npll_spll_p, 0,
  			RK3588_CLKSEL_CON(110), 5, 3, MFLAGS, 0, 5, DFLAGS,
  			RK3588_CLKGATE_CON(52), 0, GFLAGS),
@@ -139,7 +137,7 @@ index b7ce3fbd6fa6a4..6994165e03957c 100644
  			RK3588_CLKSEL_CON(110), 10, 2, MFLAGS,
  			RK3588_CLKGATE_CON(52), 2, GFLAGS),
  	COMPOSITE_NODIV(PCLK_VOP_ROOT, "pclk_vop_root", mux_100m_50m_24m_p, 0,
-@@ -2425,7 +2435,7 @@ static struct rockchip_clk_branch rk3588_clk_branches[] __initdata = {
+@@ -2426,7 +2436,7 @@ static struct rockchip_clk_branch rk3588
  
  	GATE_LINK(ACLK_ISP1_PRE, "aclk_isp1_pre", "aclk_isp1_root", "aclk_vi_root", 0, RK3588_CLKGATE_CON(26), 6, GFLAGS),
  	GATE_LINK(HCLK_ISP1_PRE, "hclk_isp1_pre", "hclk_isp1_root", "hclk_vi_root", 0, RK3588_CLKGATE_CON(26), 8, GFLAGS),

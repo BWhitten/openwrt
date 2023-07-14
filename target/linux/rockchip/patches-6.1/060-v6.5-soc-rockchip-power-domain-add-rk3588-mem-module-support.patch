@@ -18,8 +18,6 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  drivers/soc/rockchip/pm_domains.c | 160 +++++++++++++++++++++++-------
  1 file changed, 125 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/soc/rockchip/pm_domains.c b/drivers/soc/rockchip/pm_domains.c
-index 84bc022f9e5b71..e3de49e671dc05 100644
 --- a/drivers/soc/rockchip/pm_domains.c
 +++ b/drivers/soc/rockchip/pm_domains.c
 @@ -43,8 +43,10 @@ struct rockchip_domain_info {
@@ -71,7 +69,7 @@ index 84bc022f9e5b71..e3de49e671dc05 100644
  
  static bool rockchip_pmu_domain_is_idle(struct rockchip_pm_domain *pd)
  {
-@@ -408,17 +415,92 @@ static bool rockchip_pmu_domain_is_on(struct rockchip_pm_domain *pd)
+@@ -408,17 +415,92 @@ static bool rockchip_pmu_domain_is_on(st
  	return !(val & pd->info->status_mask);
  }
  
@@ -166,7 +164,7 @@ index 84bc022f9e5b71..e3de49e671dc05 100644
  		regmap_write(pmu->regmap, pmu->info->pwr_offset + pd_pwr_offset,
  			     on ? pd->info->pwr_w_mask :
  			     (pd->info->pwr_mask | pd->info->pwr_w_mask));
-@@ -428,6 +510,9 @@ static void rockchip_do_pmu_set_power_domain(struct rockchip_pm_domain *pd,
+@@ -428,6 +510,9 @@ static void rockchip_do_pmu_set_power_do
  
  	wmb();
  
@@ -176,7 +174,7 @@ index 84bc022f9e5b71..e3de49e671dc05 100644
  	if (readx_poll_timeout_atomic(rockchip_pmu_domain_is_on, pd, is_on,
  				      is_on == on, 0, 10000)) {
  		dev_err(pmu->dev,
-@@ -645,7 +730,9 @@ static int rockchip_pm_add_one_domain(struct rockchip_pmu *pmu,
+@@ -645,7 +730,9 @@ static int rockchip_pm_add_one_domain(st
  	pd->genpd.flags = GENPD_FLAG_PM_CLK;
  	if (pd_info->active_wakeup)
  		pd->genpd.flags |= GENPD_FLAG_ACTIVE_WAKEUP;
@@ -187,7 +185,7 @@ index 84bc022f9e5b71..e3de49e671dc05 100644
  
  	pmu->genpd_data.domains[id] = &pd->genpd;
  	return 0;
-@@ -1024,35 +1111,35 @@ static const struct rockchip_domain_info rk3568_pm_domains[] = {
+@@ -1024,35 +1111,35 @@ static const struct rockchip_domain_info
  };
  
  static const struct rockchip_domain_info rk3588_pm_domains[] = {
@@ -252,7 +250,7 @@ index 84bc022f9e5b71..e3de49e671dc05 100644
  };
  
  static const struct rockchip_pmu_info px30_pmu = {
-@@ -1207,6 +1294,9 @@ static const struct rockchip_pmu_info rk3588_pmu = {
+@@ -1207,6 +1294,9 @@ static const struct rockchip_pmu_info rk
  	.req_offset = 0x10c,
  	.idle_offset = 0x120,
  	.ack_offset = 0x118,

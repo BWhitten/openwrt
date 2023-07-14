@@ -12,8 +12,6 @@ Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
  Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
-index 93beb3169ce5..555e978a89b5 100644
 --- a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
 +++ b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
 @@ -31,6 +31,7 @@ properties:
@@ -24,6 +22,3 @@ index 93beb3169ce5..555e978a89b5 100644
                - rockchip,rv1126-i2s
            - const: rockchip,rk3066-i2s
  
--- 
-2.34.1
-

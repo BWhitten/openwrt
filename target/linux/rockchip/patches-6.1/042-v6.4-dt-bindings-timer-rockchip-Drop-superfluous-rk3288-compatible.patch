@@ -27,11 +27,9 @@ Link: https://lore.kernel.org/r/20230419181309.338354-2-cristian.ciocaltea@colla
  Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-index 65e59836a660c4..2bdb6e6bdb2150 100644
 --- a/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
 +++ b/Documentation/devicetree/bindings/timer/rockchip,rk-timer.yaml
-@@ -23,7 +23,6 @@ properties:
+@@ -21,7 +21,6 @@ properties:
                - rockchip,rk3188-timer
                - rockchip,rk3228-timer
                - rockchip,rk3229-timer

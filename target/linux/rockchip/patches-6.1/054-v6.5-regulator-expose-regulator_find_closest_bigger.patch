@@ -114,11 +114,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  include/linux/regulator/driver.h |  2 ++
  2 files changed, 20 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/regulator/helpers.c b/drivers/regulator/helpers.c
-index ad2237a95572..586f42e378ee 100644
 --- a/drivers/regulator/helpers.c
 +++ b/drivers/regulator/helpers.c
-@@ -902,8 +902,21 @@ bool regulator_is_equal(struct regulator *reg1, struct regulator *reg2)
+@@ -902,8 +902,21 @@ bool regulator_is_equal(struct regulator
  }
  EXPORT_SYMBOL_GPL(regulator_is_equal);
  
@@ -142,7 +140,7 @@ index ad2237a95572..586f42e378ee 100644
  {
  	unsigned int s, tmp, max, maxsel = 0;
  	bool found = false;
-@@ -933,6 +946,7 @@ static int find_closest_bigger(unsigned int target, const unsigned int *table,
+@@ -933,6 +946,7 @@ static int find_closest_bigger(unsigned
  
  	return 0;
  }
@@ -150,7 +148,7 @@ index ad2237a95572..586f42e378ee 100644
  
  /**
   * regulator_set_ramp_delay_regmap - set_ramp_delay() helper
-@@ -951,8 +965,8 @@ int regulator_set_ramp_delay_regmap(struct regulator_dev *rdev, int ramp_delay)
+@@ -951,8 +965,8 @@ int regulator_set_ramp_delay_regmap(stru
  	if (WARN_ON(!rdev->desc->n_ramp_values || !rdev->desc->ramp_delay_table))
  		return -EINVAL;
  
@@ -161,11 +159,9 @@ index ad2237a95572..586f42e378ee 100644
  
  	if (ret) {
  		dev_warn(rdev_get_dev(rdev),
-diff --git a/include/linux/regulator/driver.h b/include/linux/regulator/driver.h
-index d3b4a3d4514a..c6ef7d68eb9a 100644
 --- a/include/linux/regulator/driver.h
 +++ b/include/linux/regulator/driver.h
-@@ -758,6 +758,8 @@ int regulator_set_current_limit_regmap(struct regulator_dev *rdev,
+@@ -758,6 +758,8 @@ int regulator_set_current_limit_regmap(s
  				       int min_uA, int max_uA);
  int regulator_get_current_limit_regmap(struct regulator_dev *rdev);
  void *regulator_get_init_drvdata(struct regulator_init_data *reg_init_data);

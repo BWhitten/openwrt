@@ -101,10 +101,8 @@ Fixes init_of_cache_level() returning -EINVAL
  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 9 +++++++++
  1 file changed, 9 insertions(+)
 
-Index: linux-6.1/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-===================================================================
---- linux-6.1.orig/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ linux-6.1/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+--- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
 @@ -222,6 +222,7 @@
  			cache-size = <131072>;
  			cache-line-size = <64>;

@@ -112,10 +112,8 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/mfd/rk808.c | 64 ++++++++++++++++-----------------------------
  1 file changed, 22 insertions(+), 42 deletions(-)
 
-Index: linux-6.1/drivers/mfd/rk808.c
-===================================================================
---- linux-6.1.orig/drivers/mfd/rk808.c
-+++ linux-6.1/drivers/mfd/rk808.c
+--- a/drivers/mfd/rk808.c
++++ b/drivers/mfd/rk808.c
 @@ -541,13 +541,11 @@ static const struct regmap_irq_chip rk81
  	.init_ack_masked = true,
  };

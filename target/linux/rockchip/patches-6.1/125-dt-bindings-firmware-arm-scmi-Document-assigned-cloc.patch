@@ -17,8 +17,6 @@ Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 1c0388da6721..b7624c8b2f74 100644
 --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
 +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
 @@ -223,6 +223,9 @@ patternProperties:
@@ -31,6 +29,3 @@ index 1c0388da6721..b7624c8b2f74 100644
      required:
        - reg
  
--- 
-2.34.1
-

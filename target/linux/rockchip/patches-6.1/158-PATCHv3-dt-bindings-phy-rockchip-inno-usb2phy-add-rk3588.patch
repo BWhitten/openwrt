@@ -104,8 +104,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  .../bindings/phy/rockchip,inno-usb2phy.yaml   | 21 ++++++++++++++++---
  1 file changed, 18 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
-index 0d6b8c28be07..5254413137c6 100644
 --- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
 +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml
 @@ -20,6 +20,7 @@ properties:

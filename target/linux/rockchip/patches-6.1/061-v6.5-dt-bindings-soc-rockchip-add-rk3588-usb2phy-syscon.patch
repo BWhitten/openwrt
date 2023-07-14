@@ -13,11 +13,9 @@ Acked-by: Rob Herring <robh@kernel.org>
  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 2ed8cca79b59..6e7adcf4d7c0 100644
 --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -47,6 +47,7 @@ properties:
+@@ -52,6 +52,7 @@ properties:
                - rockchip,rk3399-pmugrf
                - rockchip,rk3568-grf
                - rockchip,rk3568-pmugrf
@@ -25,7 +23,7 @@ index 2ed8cca79b59..6e7adcf4d7c0 100644
                - rockchip,rv1108-grf
                - rockchip,rv1108-pmugrf
                - rockchip,rv1126-grf
-@@ -189,6 +190,7 @@ allOf:
+@@ -194,6 +195,7 @@ allOf:
                - rockchip,rk3308-usb2phy-grf
                - rockchip,rk3328-usb2phy-grf
                - rockchip,rk3399-grf
@@ -33,6 +31,3 @@ index 2ed8cca79b59..6e7adcf4d7c0 100644
                - rockchip,rv1108-grf
  
      then:
--- 
-2.34.1
-

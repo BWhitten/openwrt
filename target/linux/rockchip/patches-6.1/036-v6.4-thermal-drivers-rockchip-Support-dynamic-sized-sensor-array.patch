@@ -15,10 +15,8 @@ Link: https://lore.kernel.org/r/20230308112253.15659-6-sebastian.reichel@collabo
  drivers/thermal/rockchip_thermal.c | 13 ++++++-------
  1 file changed, 6 insertions(+), 7 deletions(-)
 
-Index: linux-6.1/drivers/thermal/rockchip_thermal.c
-===================================================================
---- linux-6.1.orig/drivers/thermal/rockchip_thermal.c
-+++ linux-6.1/drivers/thermal/rockchip_thermal.c
+--- a/drivers/thermal/rockchip_thermal.c
++++ b/drivers/thermal/rockchip_thermal.c
 @@ -52,12 +52,6 @@ enum adc_sort_mode {
  #include "thermal_hwmon.h"
  

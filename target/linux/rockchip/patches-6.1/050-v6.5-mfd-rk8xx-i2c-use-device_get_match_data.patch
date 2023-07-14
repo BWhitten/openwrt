@@ -117,11 +117,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/mfd/rk8xx-i2c.c  | 89 +++++++++++++++++-----------------------
  2 files changed, 37 insertions(+), 54 deletions(-)
 
-diff --git a/drivers/mfd/rk8xx-core.c b/drivers/mfd/rk8xx-core.c
-index 5c0a5acef34c..ddf2052c5190 100644
 --- a/drivers/mfd/rk8xx-core.c
 +++ b/drivers/mfd/rk8xx-core.c
-@@ -597,8 +597,6 @@ int rk8xx_probe(struct device *dev, int variant, unsigned int irq, struct regmap
+@@ -590,8 +590,6 @@ int rk8xx_probe(struct device *dev, int
  		return -EINVAL;
  	}
  
@@ -130,8 +128,6 @@ index 5c0a5acef34c..ddf2052c5190 100644
  	if (!irq)
  		return dev_err_probe(dev, -EINVAL, "No interrupt support, no core IRQ\n");
  
-diff --git a/drivers/mfd/rk8xx-i2c.c b/drivers/mfd/rk8xx-i2c.c
-index 6d121b589fec..2822bfa8a04a 100644
 --- a/drivers/mfd/rk8xx-i2c.c
 +++ b/drivers/mfd/rk8xx-i2c.c
 @@ -16,6 +16,11 @@
@@ -146,7 +142,7 @@ index 6d121b589fec..2822bfa8a04a 100644
  static bool rk808_is_volatile_reg(struct device *dev, unsigned int reg)
  {
  	/*
-@@ -103,66 +108,46 @@ static const struct regmap_config rk817_regmap_config = {
+@@ -103,66 +108,46 @@ static const struct regmap_config rk817_
  	.volatile_reg = rk817_is_volatile_reg,
  };
  
@@ -154,7 +150,11 @@ index 6d121b589fec..2822bfa8a04a 100644
 -{
 -	u8 pmic_id_msb, pmic_id_lsb;
 -	int msb, lsb;
--
++static const struct rk8xx_i2c_platform_data rk805_data = {
++	.regmap_cfg = &rk805_regmap_config,
++	.variant = RK805_ID,
++};
+ 
 -	if (of_device_is_compatible(client->dev.of_node, "rockchip,rk817") ||
 -	    of_device_is_compatible(client->dev.of_node, "rockchip,rk809")) {
 -		pmic_id_msb = RK817_ID_MSB;
@@ -163,11 +163,6 @@ index 6d121b589fec..2822bfa8a04a 100644
 -		pmic_id_msb = RK808_ID_MSB;
 -		pmic_id_lsb = RK808_ID_LSB;
 -	}
-+static const struct rk8xx_i2c_platform_data rk805_data = {
-+	.regmap_cfg = &rk805_regmap_config,
-+	.variant = RK805_ID,
-+};
-+
 +static const struct rk8xx_i2c_platform_data rk808_data = {
 +	.regmap_cfg = &rk808_regmap_config,
 +	.variant = RK808_ID,
@@ -177,21 +172,22 @@ index 6d121b589fec..2822bfa8a04a 100644
 -	msb = i2c_smbus_read_byte_data(client, pmic_id_msb);
 -	if (msb < 0)
 -		return dev_err_probe(&client->dev, msb, "failed to read the chip id MSB\n");
+-
+-	lsb = i2c_smbus_read_byte_data(client, pmic_id_lsb);
+-	if (lsb < 0)
+-		return dev_err_probe(&client->dev, lsb, "failed to read the chip id LSB\n");
 +static const struct rk8xx_i2c_platform_data rk809_data = {
 +	.regmap_cfg = &rk817_regmap_config,
 +	.variant = RK809_ID,
 +};
  
--	lsb = i2c_smbus_read_byte_data(client, pmic_id_lsb);
--	if (lsb < 0)
--		return dev_err_probe(&client->dev, lsb, "failed to read the chip id LSB\n");
+-	return ((msb << 8) | lsb) & RK8XX_ID_MSK;
+-}
 +static const struct rk8xx_i2c_platform_data rk817_data = {
 +	.regmap_cfg = &rk817_regmap_config,
 +	.variant = RK817_ID,
 +};
- 
--	return ((msb << 8) | lsb) & RK8XX_ID_MSK;
--}
++
 +static const struct rk8xx_i2c_platform_data rk818_data = {
 +	.regmap_cfg = &rk818_regmap_config,
 +	.variant = RK818_ID,
@@ -240,7 +236,7 @@ index 6d121b589fec..2822bfa8a04a 100644
  }
  
  static void rk8xx_i2c_shutdown(struct i2c_client *client)
-@@ -173,11 +158,11 @@ static void rk8xx_i2c_shutdown(struct i2c_client *client)
+@@ -173,11 +158,11 @@ static void rk8xx_i2c_shutdown(struct i2
  static SIMPLE_DEV_PM_OPS(rk8xx_i2c_pm_ops, rk8xx_suspend, rk8xx_resume);
  
  static const struct of_device_id rk8xx_i2c_of_match[] = {

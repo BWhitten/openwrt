@@ -15,11 +15,9 @@ Link: https://lore.kernel.org/r/20230308112253.15659-3-sebastian.reichel@collabo
  drivers/thermal/rockchip_thermal.c | 33 +++++-------------------------
  1 file changed, 5 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
-index 68e8541e8aa67e..0a7e47e62ab30f 100644
 --- a/drivers/thermal/rockchip_thermal.c
 +++ b/drivers/thermal/rockchip_thermal.c
-@@ -1380,14 +1380,14 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
+@@ -1385,14 +1385,14 @@ static int rockchip_thermal_probe(struct
  		return error;
  	}
  
@@ -36,7 +34,7 @@ index 68e8541e8aa67e..0a7e47e62ab30f 100644
  	if (IS_ERR(thermal->pclk)) {
  		error = PTR_ERR(thermal->pclk);
  		dev_err(&pdev->dev, "failed to get apb_pclk clock: %d\n",
-@@ -1395,26 +1395,13 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
+@@ -1400,26 +1400,13 @@ static int rockchip_thermal_probe(struct
  		return error;
  	}
  
@@ -64,7 +62,7 @@ index 68e8541e8aa67e..0a7e47e62ab30f 100644
  	}
  
  	thermal->chip->initialize(thermal->grf, thermal->regs,
-@@ -1428,7 +1415,7 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
+@@ -1433,7 +1420,7 @@ static int rockchip_thermal_probe(struct
  			dev_err(&pdev->dev,
  				"failed to register sensor[%d] : error = %d\n",
  				i, error);
@@ -73,7 +71,7 @@ index 68e8541e8aa67e..0a7e47e62ab30f 100644
  		}
  	}
  
-@@ -1439,7 +1426,7 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
+@@ -1444,7 +1431,7 @@ static int rockchip_thermal_probe(struct
  	if (error) {
  		dev_err(&pdev->dev,
  			"failed to request tsadc irq: %d\n", error);
@@ -82,7 +80,7 @@ index 68e8541e8aa67e..0a7e47e62ab30f 100644
  	}
  
  	thermal->chip->control(thermal->regs, true);
-@@ -1456,13 +1443,6 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
+@@ -1462,13 +1449,6 @@ static int rockchip_thermal_probe(struct
  	platform_set_drvdata(pdev, thermal);
  
  	return 0;
@@ -96,7 +94,7 @@ index 68e8541e8aa67e..0a7e47e62ab30f 100644
  }
  
  static int rockchip_thermal_remove(struct platform_device *pdev)
-@@ -1479,9 +1459,6 @@ static int rockchip_thermal_remove(struct platform_device *pdev)
+@@ -1485,9 +1465,6 @@ static int rockchip_thermal_remove(struc
  
  	thermal->chip->control(thermal->regs, false);
  

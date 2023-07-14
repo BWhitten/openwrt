@@ -102,8 +102,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 38 +++++++++++++++++++
  1 file changed, 38 insertions(+)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index 2c4683c67a8e..101b46939f0b 100644
 --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
 +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
 @@ -24,6 +24,7 @@
@@ -130,7 +128,7 @@ index 2c4683c67a8e..101b46939f0b 100644
  	enum usb_chg_state	chg_state;
  	enum power_supply_type	chg_type;
  	u8			dcd_retries;
-@@ -280,6 +283,25 @@ static inline bool property_enabled(struct regmap *base,
+@@ -280,6 +283,25 @@ static inline bool property_enabled(stru
  	return tmp != reg->disable;
  }
  
@@ -156,7 +154,7 @@ index 2c4683c67a8e..101b46939f0b 100644
  static int rockchip_usb2phy_clk480m_prepare(struct clk_hw *hw)
  {
  	struct rockchip_usb2phy *rphy =
-@@ -534,6 +556,18 @@ static int rockchip_usb2phy_power_on(struct phy *phy)
+@@ -534,6 +556,18 @@ static int rockchip_usb2phy_power_on(str
  		return ret;
  	}
  
@@ -175,7 +173,7 @@ index 2c4683c67a8e..101b46939f0b 100644
  	/* waiting for the utmi_clk to become stable */
  	usleep_range(1500, 2000);
  
-@@ -1348,6 +1382,10 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
+@@ -1348,6 +1382,10 @@ static int rockchip_usb2phy_probe(struct
  		return -EINVAL;
  	}
  

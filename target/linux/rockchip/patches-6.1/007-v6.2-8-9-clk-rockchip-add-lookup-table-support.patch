@@ -100,11 +100,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/clk/rockchip/softrst.c | 34 +++++++++++++++++++++++++---------
  2 files changed, 40 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
-index 6e84ab85b372..7ee231d9585d 100644
 --- a/drivers/clk/rockchip/clk.h
 +++ b/drivers/clk/rockchip/clk.h
-@@ -958,15 +958,24 @@ struct clk *rockchip_clk_register_halfdiv(const char *name,
+@@ -958,15 +958,24 @@ struct clk *rockchip_clk_register_halfdi
  					  spinlock_t *lock);
  
  #ifdef CONFIG_RESET_CONTROLLER
@@ -135,8 +133,6 @@ index 6e84ab85b372..7ee231d9585d 100644
 +}
 +
  #endif
-diff --git a/drivers/clk/rockchip/softrst.c b/drivers/clk/rockchip/softrst.c
-index 5d07266745b8..fd56aaefe6d1 100644
 --- a/drivers/clk/rockchip/softrst.c
 +++ b/drivers/clk/rockchip/softrst.c
 @@ -12,6 +12,7 @@
@@ -147,7 +143,7 @@ index 5d07266745b8..fd56aaefe6d1 100644
  	void __iomem			*reg_base;
  	int				num_regs;
  	int				num_per_reg;
-@@ -25,8 +26,13 @@ static int rockchip_softrst_assert(struct reset_controller_dev *rcdev,
+@@ -25,8 +26,13 @@ static int rockchip_softrst_assert(struc
  	struct rockchip_softrst *softrst = container_of(rcdev,
  						     struct rockchip_softrst,
  						     rcdev);
@@ -163,7 +159,7 @@ index 5d07266745b8..fd56aaefe6d1 100644
  
  	if (softrst->flags & ROCKCHIP_SOFTRST_HIWORD_MASK) {
  		writel(BIT(offset) | (BIT(offset) << 16),
-@@ -52,8 +58,13 @@ static int rockchip_softrst_deassert(struct reset_controller_dev *rcdev,
+@@ -52,8 +58,13 @@ static int rockchip_softrst_deassert(str
  	struct rockchip_softrst *softrst = container_of(rcdev,
  						     struct rockchip_softrst,
  						     rcdev);
@@ -179,7 +175,7 @@ index 5d07266745b8..fd56aaefe6d1 100644
  
  	if (softrst->flags & ROCKCHIP_SOFTRST_HIWORD_MASK) {
  		writel((BIT(offset) << 16), softrst->reg_base + (bank * 4));
-@@ -77,9 +88,10 @@ static const struct reset_control_ops rockchip_softrst_ops = {
+@@ -77,9 +88,10 @@ static const struct reset_control_ops ro
  	.deassert	= rockchip_softrst_deassert,
  };
  
@@ -193,7 +189,7 @@ index 5d07266745b8..fd56aaefe6d1 100644
  {
  	struct rockchip_softrst *softrst;
  	int ret;
-@@ -91,13 +103,17 @@ void rockchip_register_softrst(struct device_node *np,
+@@ -91,13 +103,17 @@ void rockchip_register_softrst(struct de
  	spin_lock_init(&softrst->lock);
  
  	softrst->reg_base = base;
@@ -212,7 +208,7 @@ index 5d07266745b8..fd56aaefe6d1 100644
  	softrst->rcdev.ops = &rockchip_softrst_ops;
  	softrst->rcdev.of_node = np;
  	ret = reset_controller_register(&softrst->rcdev);
-@@ -107,4 +123,4 @@ void rockchip_register_softrst(struct device_node *np,
+@@ -107,4 +123,4 @@ void rockchip_register_softrst(struct de
  		kfree(softrst);
  	}
  };

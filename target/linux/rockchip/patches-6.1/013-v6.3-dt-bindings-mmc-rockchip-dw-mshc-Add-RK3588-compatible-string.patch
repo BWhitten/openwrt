@@ -102,8 +102,6 @@ Reviewed-by: Heiko Stuebner <heiko@sntech.de>
  Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-index 67d7223f74da..211cd0b0bc5f 100644
 --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
 +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
 @@ -39,6 +39,7 @@ properties:

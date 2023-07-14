@@ -41,11 +41,9 @@ Signed-off-by: Stephen Boyd <sboyd@kernel.org>
  drivers/clk/clk-composite.c | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/clk-composite.c b/drivers/clk/clk-composite.c
-index edfa94641bbfed..66759fe28fad67 100644
 --- a/drivers/clk/clk-composite.c
 +++ b/drivers/clk/clk-composite.c
-@@ -119,7 +119,10 @@ static int clk_composite_determine_rate(struct clk_hw *hw,
+@@ -119,7 +119,10 @@ static int clk_composite_determine_rate(
  			if (ret)
  				continue;
  

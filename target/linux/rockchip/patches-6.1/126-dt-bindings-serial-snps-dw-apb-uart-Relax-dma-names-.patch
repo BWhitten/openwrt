@@ -36,8 +36,6 @@ Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
  .../devicetree/bindings/serial/snps-dw-apb-uart.yaml | 12 ++++++++++++
  1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-index b9c2287c5d1e..d374844a61a5 100644
 --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
 +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
 @@ -67,6 +67,18 @@ properties:
@@ -59,6 +57,3 @@ index b9c2287c5d1e..d374844a61a5 100644
    snps,uart-16550-compatible:
      description: reflects the value of UART_16550_COMPATIBLE configuration
        parameter. Define this if your UART does not implement the busy functionality.
--- 
-2.34.1
-

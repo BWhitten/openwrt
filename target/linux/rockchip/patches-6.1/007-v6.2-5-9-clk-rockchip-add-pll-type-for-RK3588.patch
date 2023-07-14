@@ -105,15 +105,12 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/clk/rockchip/clk.h     |  18 +++
  2 files changed, 235 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/rockchip/clk-pll.c b/drivers/clk/rockchip/clk-pll.c
-index f7827b3b7fc1..4b9840994295 100644
 --- a/drivers/clk/rockchip/clk-pll.c
 +++ b/drivers/clk/rockchip/clk-pll.c
-@@ -842,6 +842,213 @@ static const struct clk_ops rockchip_rk3399_pll_clk_ops = {
- 	.init = rockchip_rk3399_pll_init,
+@@ -843,6 +843,213 @@ static const struct clk_ops rockchip_rk3
  };
  
-+/*
+ /*
 + * PLL used in RK3588
 + */
 +
@@ -320,10 +317,11 @@ index f7827b3b7fc1..4b9840994295 100644
 +	.init = rockchip_rk3588_pll_init,
 +};
 +
- /*
++/*
   * Common registering of pll clocks
   */
-@@ -890,7 +1097,8 @@ struct clk *rockchip_clk_register_pll(struct rockchip_clk_provider *ctx,
+ 
+@@ -890,7 +1097,8 @@ struct clk *rockchip_clk_register_pll(st
  	if (pll_type == pll_rk3036 ||
  	    pll_type == pll_rk3066 ||
  	    pll_type == pll_rk3328 ||
@@ -333,7 +331,7 @@ index f7827b3b7fc1..4b9840994295 100644
  		pll_mux->flags |= CLK_MUX_HIWORD_MASK;
  
  	/* the actual muxing is xin24m, pll-output, xin32k */
-@@ -957,6 +1165,14 @@ struct clk *rockchip_clk_register_pll(struct rockchip_clk_provider *ctx,
+@@ -957,6 +1165,14 @@ struct clk *rockchip_clk_register_pll(st
  		else
  			init.ops = &rockchip_rk3399_pll_clk_ops;
  		break;
@@ -348,8 +346,6 @@ index f7827b3b7fc1..4b9840994295 100644
  	default:
  		pr_warn("%s: Unknown pll type for pll clk %s\n",
  			__func__, name);
-diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
-index 43a37a43b6f3..6eb31d36c4cd 100644
 --- a/drivers/clk/rockchip/clk.h
 +++ b/drivers/clk/rockchip/clk.h
 @@ -240,6 +240,8 @@ enum rockchip_pll_type {

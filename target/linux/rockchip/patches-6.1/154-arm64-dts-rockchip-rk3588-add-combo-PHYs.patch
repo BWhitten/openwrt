@@ -12,8 +12,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 42 +++++++++++++++++++++++
  2 files changed, 63 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
-index 8be75556af8f1..9d8539b5309ba 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
 @@ -7,6 +7,11 @@
@@ -28,7 +26,7 @@ index 8be75556af8f1..9d8539b5309ba 100644
  	i2s8_8ch: i2s@fddc8000 {
  		compatible = "rockchip,rk3588-i2s-tdm";
  		reg = <0x0 0xfddc8000 0x0 0x1000>;
-@@ -123,4 +128,20 @@ gmac0_mtl_tx_setup: tx-queues-config {
+@@ -177,4 +182,20 @@
  			queue1 {};
  		};
  	};
@@ -49,11 +47,9 @@ index 8be75556af8f1..9d8539b5309ba 100644
 +		status = "disabled";
 +	};
  };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index 01058fed8f96e..45ae457a22a43 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -944,6 +944,16 @@ php_grf: syscon@fd5b0000 {
+@@ -408,6 +408,16 @@
  		reg = <0x0 0xfd5b0000 0x0 0x1000>;
  	};
  
@@ -70,7 +66,7 @@ index 01058fed8f96e..45ae457a22a43 100644
  	ioc: syscon@fd5f0000 {
  		compatible = "rockchip,rk3588-ioc", "syscon";
  		reg = <0x0 0xfd5f0000 0x0 0x10000>;
-@@ -2371,6 +2381,38 @@ dmac2: dma-controller@fed10000 {
+@@ -1960,6 +1970,38 @@
  		#dma-cells = <1>;
  	};
  
@@ -109,6 +105,3 @@ index 01058fed8f96e..45ae457a22a43 100644
  	system_sram2: sram@ff001000 {
  		compatible = "mmio-sram";
  		reg = <0x0 0xff001000 0x0 0xef000>;
--- 
-GitLab
-

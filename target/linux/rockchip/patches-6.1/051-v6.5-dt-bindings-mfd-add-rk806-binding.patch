@@ -109,9 +109,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  1 file changed, 406 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
 
-diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
-new file mode 100644
-index 000000000000..cf2500f2e9a0
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
 @@ -0,0 +1,406 @@

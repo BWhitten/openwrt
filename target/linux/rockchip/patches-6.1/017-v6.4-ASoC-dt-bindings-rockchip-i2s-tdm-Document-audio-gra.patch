@@ -15,11 +15,9 @@ Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
  Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
-index 6a7c004bef17..1a0330b97e7a 100644
 --- a/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
 +++ b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
-@@ -82,6 +82,10 @@ properties:
+@@ -83,6 +83,10 @@ properties:
          - tx-m
          - rx-m
  
@@ -30,6 +28,3 @@ index 6a7c004bef17..1a0330b97e7a 100644
    rockchip,grf:
      $ref: /schemas/types.yaml#/definitions/phandle
      description:
--- 
-2.34.1
-

@@ -104,11 +104,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 19 ++++++-------------
  1 file changed, 6 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index aa8c55609c0d..1cf84869e78b 100644
 --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
 +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-@@ -1390,24 +1390,22 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
+@@ -1390,24 +1390,22 @@ static int rockchip_usb2phy_probe(struct
  	if (IS_ERR(rphy->phy_reset))
  		return PTR_ERR(rphy->phy_reset);
  
@@ -139,7 +137,7 @@ index aa8c55609c0d..1cf84869e78b 100644
  	}
  
  	index = 0;
-@@ -1470,11 +1468,6 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
+@@ -1470,11 +1468,6 @@ next_child:
  
  put_child:
  	of_node_put(child_np);

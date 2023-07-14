@@ -14,15 +14,12 @@ Link: https://lore.kernel.org/r/20230308112253.15659-5-sebastian.reichel@collabo
  drivers/thermal/rockchip_thermal.c | 48 +++++++++++++-----------------
  1 file changed, 21 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
-index 472212dea6c655..d3d9a8f9b0557f 100644
 --- a/drivers/thermal/rockchip_thermal.c
 +++ b/drivers/thermal/rockchip_thermal.c
-@@ -39,15 +39,6 @@ enum tshut_polarity {
- 	TSHUT_HIGH_ACTIVE,
+@@ -40,15 +40,6 @@ enum tshut_polarity {
  };
  
--/*
+ /*
 - * The system has two Temperature Sensors.
 - * sensor0 is for CPU, and sensor1 is for GPU.
 - */
@@ -31,9 +28,10 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
 -	SENSOR_GPU,
 -};
 -
- /*
+-/*
   * The conversion table has the adc value and temperature.
   * ADC_DECREMENT: the adc value is of diminishing.(e.g. rk3288_code_table)
+  * ADC_INCREMENT: the adc value is incremental.(e.g. rk3368_code_table)
 @@ -82,7 +73,7 @@ struct chip_tsadc_table {
  
  /**
@@ -52,7 +50,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	int chn_num;
  
  	/* The hardware-controlled tshut property */
-@@ -925,8 +916,8 @@ static void rk_tsadcv2_tshut_mode(int chn, void __iomem *regs,
+@@ -925,8 +916,8 @@ static void rk_tsadcv2_tshut_mode(int ch
  }
  
  static const struct rockchip_tsadc_chip px30_tsadc_data = {
@@ -63,7 +61,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 2, /* 2 channels for tsadc */
  
  	.tshut_mode = TSHUT_MODE_CRU, /* default TSHUT via CRU */
-@@ -949,7 +940,8 @@ static const struct rockchip_tsadc_chip px30_tsadc_data = {
+@@ -949,7 +940,8 @@ static const struct rockchip_tsadc_chip
  };
  
  static const struct rockchip_tsadc_chip rv1108_tsadc_data = {
@@ -73,7 +71,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 1, /* one channel for tsadc */
  
  	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
-@@ -973,7 +965,8 @@ static const struct rockchip_tsadc_chip rv1108_tsadc_data = {
+@@ -973,7 +965,8 @@ static const struct rockchip_tsadc_chip
  };
  
  static const struct rockchip_tsadc_chip rk3228_tsadc_data = {
@@ -83,7 +81,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 1, /* one channel for tsadc */
  
  	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
-@@ -997,8 +990,8 @@ static const struct rockchip_tsadc_chip rk3228_tsadc_data = {
+@@ -997,8 +990,8 @@ static const struct rockchip_tsadc_chip
  };
  
  static const struct rockchip_tsadc_chip rk3288_tsadc_data = {
@@ -94,7 +92,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 2, /* two channels for tsadc */
  
  	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
-@@ -1022,7 +1015,8 @@ static const struct rockchip_tsadc_chip rk3288_tsadc_data = {
+@@ -1022,7 +1015,8 @@ static const struct rockchip_tsadc_chip
  };
  
  static const struct rockchip_tsadc_chip rk3328_tsadc_data = {
@@ -104,7 +102,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 1, /* one channels for tsadc */
  
  	.tshut_mode = TSHUT_MODE_CRU, /* default TSHUT via CRU */
-@@ -1045,8 +1039,8 @@ static const struct rockchip_tsadc_chip rk3328_tsadc_data = {
+@@ -1045,8 +1039,8 @@ static const struct rockchip_tsadc_chip
  };
  
  static const struct rockchip_tsadc_chip rk3366_tsadc_data = {
@@ -115,7 +113,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 2, /* two channels for tsadc */
  
  	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
-@@ -1070,8 +1064,8 @@ static const struct rockchip_tsadc_chip rk3366_tsadc_data = {
+@@ -1070,8 +1064,8 @@ static const struct rockchip_tsadc_chip
  };
  
  static const struct rockchip_tsadc_chip rk3368_tsadc_data = {
@@ -126,7 +124,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 2, /* two channels for tsadc */
  
  	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
-@@ -1095,8 +1089,8 @@ static const struct rockchip_tsadc_chip rk3368_tsadc_data = {
+@@ -1095,8 +1089,8 @@ static const struct rockchip_tsadc_chip
  };
  
  static const struct rockchip_tsadc_chip rk3399_tsadc_data = {
@@ -137,7 +135,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 2, /* two channels for tsadc */
  
  	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
-@@ -1120,8 +1114,8 @@ static const struct rockchip_tsadc_chip rk3399_tsadc_data = {
+@@ -1120,8 +1114,8 @@ static const struct rockchip_tsadc_chip
  };
  
  static const struct rockchip_tsadc_chip rk3568_tsadc_data = {
@@ -148,7 +146,7 @@ index 472212dea6c655..d3d9a8f9b0557f 100644
  	.chn_num = 2, /* two channels for tsadc */
  
  	.tshut_mode = TSHUT_MODE_GPIO, /* default TSHUT via GPIO give PMIC */
-@@ -1401,7 +1395,7 @@ static int rockchip_thermal_probe(struct platform_device *pdev)
+@@ -1406,7 +1400,7 @@ static int rockchip_thermal_probe(struct
  	for (i = 0; i < thermal->chip->chn_num; i++) {
  		error = rockchip_thermal_register_sensor(pdev, thermal,
  						&thermal->sensors[i],

@@ -14,10 +14,8 @@ Link: https://lore.kernel.org/r/20230308112253.15659-2-sebastian.reichel@collabo
  drivers/thermal/rockchip_thermal.c | 7 +------
  1 file changed, 1 insertion(+), 6 deletions(-)
 
-Index: linux-6.1/drivers/thermal/rockchip_thermal.c
-===================================================================
---- linux-6.1.orig/drivers/thermal/rockchip_thermal.c
-+++ linux-6.1/drivers/thermal/rockchip_thermal.c
+--- a/drivers/thermal/rockchip_thermal.c
++++ b/drivers/thermal/rockchip_thermal.c
 @@ -1353,16 +1353,11 @@ static int rockchip_thermal_probe(struct
  {
  	struct device_node *np = pdev->dev.of_node;

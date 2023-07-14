@@ -16,8 +16,6 @@ Signed-off-by: Heiko Stuebner <heiko@sntech.de>
  Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-index 92df6e453f64b6..e7a87ce94772cd 100644
 --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
 +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
 @@ -29,6 +29,7 @@ properties:

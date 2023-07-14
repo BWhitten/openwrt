@@ -107,9 +107,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  1 file changed, 71 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3588-cru.yaml
 
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3588-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3588-cru.yaml
-new file mode 100644
-index 000000000000..74cd3f3f229a
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3588-cru.yaml
 @@ -0,0 +1,71 @@

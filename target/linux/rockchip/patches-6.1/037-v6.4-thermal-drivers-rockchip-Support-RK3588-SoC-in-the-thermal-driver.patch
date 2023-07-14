@@ -24,8 +24,6 @@ Link: https://lore.kernel.org/r/20230308112253.15659-7-sebastian.reichel@collabo
  drivers/thermal/rockchip_thermal.c | 177 +++++++++++++++++++++++++++++
  1 file changed, 177 insertions(+)
 
-diff --git a/drivers/thermal/rockchip_thermal.c b/drivers/thermal/rockchip_thermal.c
-index dcbc5d22cbc920..c30d3df2e39b38 100644
 --- a/drivers/thermal/rockchip_thermal.c
 +++ b/drivers/thermal/rockchip_thermal.c
 @@ -165,29 +165,49 @@ struct rockchip_thermal_data {
@@ -100,7 +98,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  #define GRF_SARADC_TESTBIT_ON			(0x10001 << 2)
  #define GRF_TSADC_TESTBIT_H_ON			(0x10001 << 2)
  #define GRF_TSADC_VCM_EN_L			(0x10001 << 7)
-@@ -508,6 +536,15 @@ static const struct tsadc_table rk3568_code_table[] = {
+@@ -508,6 +536,15 @@ static const struct tsadc_table rk3568_c
  	{TSADCV2_DATA_MASK, 125000},
  };
  
@@ -116,7 +114,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static u32 rk_tsadcv2_temp_to_code(const struct chip_tsadc_table *table,
  				   int temp)
  {
-@@ -778,6 +815,25 @@ static void rk_tsadcv7_initialize(struct regmap *grf, void __iomem *regs,
+@@ -778,6 +815,25 @@ static void rk_tsadcv7_initialize(struct
  	}
  }
  
@@ -142,7 +140,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static void rk_tsadcv2_irq_ack(void __iomem *regs)
  {
  	u32 val;
-@@ -794,6 +850,17 @@ static void rk_tsadcv3_irq_ack(void __iomem *regs)
+@@ -794,6 +850,17 @@ static void rk_tsadcv3_irq_ack(void __io
  	writel_relaxed(val & TSADCV3_INT_PD_CLEAR_MASK, regs + TSADCV2_INT_PD);
  }
  
@@ -160,7 +158,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static void rk_tsadcv2_control(void __iomem *regs, bool enable)
  {
  	u32 val;
-@@ -829,6 +896,18 @@ static void rk_tsadcv3_control(void __iomem *regs, bool enable)
+@@ -829,6 +896,18 @@ static void rk_tsadcv3_control(void __io
  	writel_relaxed(val, regs + TSADCV2_AUTO_CON);
  }
  
@@ -179,7 +177,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static int rk_tsadcv2_get_temp(const struct chip_tsadc_table *table,
  			       int chn, void __iomem *regs, int *temp)
  {
-@@ -839,6 +918,16 @@ static int rk_tsadcv2_get_temp(const struct chip_tsadc_table *table,
+@@ -839,6 +918,16 @@ static int rk_tsadcv2_get_temp(const str
  	return rk_tsadcv2_code_to_temp(table, val, temp);
  }
  
@@ -196,7 +194,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static int rk_tsadcv2_alarm_temp(const struct chip_tsadc_table *table,
  				 int chn, void __iomem *regs, int temp)
  {
-@@ -873,6 +962,33 @@ static int rk_tsadcv2_alarm_temp(const struct chip_tsadc_table *table,
+@@ -873,6 +962,33 @@ static int rk_tsadcv2_alarm_temp(const s
  	return 0;
  }
  
@@ -230,7 +228,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static int rk_tsadcv2_tshut_temp(const struct chip_tsadc_table *table,
  				 int chn, void __iomem *regs, int temp)
  {
-@@ -892,6 +1008,25 @@ static int rk_tsadcv2_tshut_temp(const struct chip_tsadc_table *table,
+@@ -892,6 +1008,25 @@ static int rk_tsadcv2_tshut_temp(const s
  	return 0;
  }
  
@@ -256,7 +254,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static void rk_tsadcv2_tshut_mode(int chn, void __iomem *regs,
  				  enum tshut_mode mode)
  {
-@@ -909,6 +1044,22 @@ static void rk_tsadcv2_tshut_mode(int chn, void __iomem *regs,
+@@ -909,6 +1044,22 @@ static void rk_tsadcv2_tshut_mode(int ch
  	writel_relaxed(val, regs + TSADCV2_INT_EN);
  }
  
@@ -279,7 +277,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static const struct rockchip_tsadc_chip px30_tsadc_data = {
  	/* cpu, gpu */
  	.chn_offset = 0,
-@@ -1132,6 +1283,28 @@ static const struct rockchip_tsadc_chip rk3568_tsadc_data = {
+@@ -1132,6 +1283,28 @@ static const struct rockchip_tsadc_chip
  	},
  };
  
@@ -308,7 +306,7 @@ index dcbc5d22cbc920..c30d3df2e39b38 100644
  static const struct of_device_id of_rockchip_thermal_match[] = {
  	{	.compatible = "rockchip,px30-tsadc",
  		.data = (void *)&px30_tsadc_data,
-@@ -1168,6 +1341,10 @@ static const struct of_device_id of_rockchip_thermal_match[] = {
+@@ -1168,6 +1341,10 @@ static const struct of_device_id of_rock
  		.compatible = "rockchip,rk3568-tsadc",
  		.data = (void *)&rk3568_tsadc_data,
  	},

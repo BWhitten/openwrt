@@ -16,8 +16,6 @@ Signed-off-by: Mark Brown <broonie@kernel.org>
  drivers/regulator/rk808-regulator.c | 20 ++++++++++++--------
  1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
-index 127dc2e2e6903b..ce9c64cadebacb 100644
 --- a/drivers/regulator/rk808-regulator.c
 +++ b/drivers/regulator/rk808-regulator.c
 @@ -14,7 +14,6 @@
@@ -28,7 +26,7 @@ index 127dc2e2e6903b..ce9c64cadebacb 100644
  #include <linux/module.h>
  #include <linux/of_device.h>
  #include <linux/of_gpio.h>
-@@ -1286,19 +1285,23 @@ static int rk808_regulator_dt_parse_pdata(struct device *dev,
+@@ -1286,19 +1285,23 @@ dt_parse_end:
  static int rk808_regulator_probe(struct platform_device *pdev)
  {
  	struct rk808 *rk808 = dev_get_drvdata(pdev->dev.parent);
@@ -55,7 +53,7 @@ index 127dc2e2e6903b..ce9c64cadebacb 100644
  	if (ret < 0)
  		return ret;
  
-@@ -1326,21 +1329,22 @@ static int rk808_regulator_probe(struct platform_device *pdev)
+@@ -1326,21 +1329,22 @@ static int rk808_regulator_probe(struct
  		nregulators = RK818_NUM_REGULATORS;
  		break;
  	default:

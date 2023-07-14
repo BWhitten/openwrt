@@ -19,8 +19,6 @@ Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
  Documentation/devicetree/bindings/sound/everest,es8316.yaml | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8316.yaml b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
-index 3b752bba748b..23d17ff4e6cb 100644
 --- a/Documentation/devicetree/bindings/sound/everest,es8316.yaml
 +++ b/Documentation/devicetree/bindings/sound/everest,es8316.yaml
 @@ -25,6 +25,10 @@ properties:
@@ -34,6 +32,3 @@ index 3b752bba748b..23d17ff4e6cb 100644
    "#sound-dai-cells":
      const: 0
  
--- 
-2.34.1
-

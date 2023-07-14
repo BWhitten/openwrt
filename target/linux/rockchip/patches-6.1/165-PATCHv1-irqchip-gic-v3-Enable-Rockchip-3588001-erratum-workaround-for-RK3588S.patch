@@ -108,11 +108,9 @@ upstream RK3588S boards at the moment.
  drivers/irqchip/irq-gic-v3-its.c | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-index 1994541eaef8..034ece9ac47c 100644
 --- a/drivers/irqchip/irq-gic-v3-its.c
 +++ b/drivers/irqchip/irq-gic-v3-its.c
-@@ -4727,7 +4727,8 @@ static bool __maybe_unused its_enable_rk3588001(void *data)
+@@ -4725,7 +4725,8 @@ static bool __maybe_unused its_enable_rk
  {
  	struct its_node *its = data;
  

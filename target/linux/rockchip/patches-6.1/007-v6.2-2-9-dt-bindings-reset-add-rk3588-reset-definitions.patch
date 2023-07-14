@@ -111,9 +111,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  1 file changed, 754 insertions(+)
  create mode 100644 include/dt-bindings/reset/rockchip,rk3588-cru.h
 
-diff --git a/include/dt-bindings/reset/rockchip,rk3588-cru.h b/include/dt-bindings/reset/rockchip,rk3588-cru.h
-new file mode 100644
-index 000000000000..738e56aead93
 --- /dev/null
 +++ b/include/dt-bindings/reset/rockchip,rk3588-cru.h
 @@ -0,0 +1,754 @@

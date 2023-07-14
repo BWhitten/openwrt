@@ -119,8 +119,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/regulator/rk808-regulator.c | 385 ++++++++++++++++++++++++++++
  1 file changed, 385 insertions(+)
 
-diff --git a/drivers/regulator/rk808-regulator.c b/drivers/regulator/rk808-regulator.c
-index 5f14d6dd4593..460525ed006c 100644
 --- a/drivers/regulator/rk808-regulator.c
 +++ b/drivers/regulator/rk808-regulator.c
 @@ -3,9 +3,11 @@
@@ -202,7 +200,7 @@ index 5f14d6dd4593..460525ed006c 100644
  struct rk808_regulator_data {
  	struct gpio_desc *dvs_gpio[2];
  };
-@@ -216,6 +264,133 @@ static const unsigned int rk817_buck1_4_ramp_table[] = {
+@@ -216,6 +264,133 @@ static const unsigned int rk817_buck1_4_
  	3000, 6300, 12500, 25000
  };
  
@@ -336,7 +334,7 @@ index 5f14d6dd4593..460525ed006c 100644
  static int rk808_buck1_2_get_voltage_sel_regmap(struct regulator_dev *rdev)
  {
  	struct rk808_regulator_data *pdata = rdev_get_drvdata(rdev);
-@@ -393,6 +568,47 @@ static int rk805_set_suspend_disable(struct regulator_dev *rdev)
+@@ -393,6 +568,47 @@ static int rk805_set_suspend_disable(str
  				  0);
  }
  
@@ -384,7 +382,7 @@ index 5f14d6dd4593..460525ed006c 100644
  static int rk808_set_suspend_enable(struct regulator_dev *rdev)
  {
  	unsigned int reg;
-@@ -561,6 +777,64 @@ static const struct regulator_ops rk805_switch_ops = {
+@@ -561,6 +777,64 @@ static const struct regulator_ops rk805_
  	.set_suspend_disable    = rk805_set_suspend_disable,
  };
  
@@ -449,7 +447,7 @@ index 5f14d6dd4593..460525ed006c 100644
  static const struct regulator_ops rk808_buck1_2_ops = {
  	.list_voltage		= regulator_list_voltage_linear,
  	.map_voltage		= regulator_map_voltage_linear,
-@@ -743,6 +1017,112 @@ static const struct regulator_desc rk805_reg[] = {
+@@ -743,6 +1017,112 @@ static const struct regulator_desc rk805
  		BIT(2), 400),
  };
  
@@ -562,7 +560,7 @@ index 5f14d6dd4593..460525ed006c 100644
  static const struct regulator_desc rk808_reg[] = {
  	{
  		.name = "DCDC_REG1",
-@@ -1313,6 +1693,10 @@ static int rk808_regulator_probe(struct platform_device *pdev)
+@@ -1313,6 +1693,10 @@ static int rk808_regulator_probe(struct
  		regulators = rk805_reg;
  		nregulators = RK805_NUM_REGULATORS;
  		break;
@@ -573,7 +571,7 @@ index 5f14d6dd4593..460525ed006c 100644
  	case RK808_ID:
  		regulators = rk808_reg;
  		nregulators = RK808_NUM_REGULATORS;
-@@ -1366,5 +1750,6 @@ MODULE_AUTHOR("Tony xie <tony.xie@rock-chips.com>");
+@@ -1366,5 +1750,6 @@ MODULE_AUTHOR("Tony xie <tony.xie@rock-c
  MODULE_AUTHOR("Chris Zhong <zyw@rock-chips.com>");
  MODULE_AUTHOR("Zhang Qing <zhangqing@rock-chips.com>");
  MODULE_AUTHOR("Wadim Egorov <w.egorov@phytec.de>");

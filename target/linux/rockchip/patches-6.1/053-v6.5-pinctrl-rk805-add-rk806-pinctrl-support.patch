@@ -119,8 +119,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/pinctrl/pinctrl-rk805.c | 189 ++++++++++++++++++++++++++++----
  1 file changed, 168 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/pinctrl/pinctrl-rk805.c b/drivers/pinctrl/pinctrl-rk805.c
-index 7c1f7408fb9a..2639a9ee82cd 100644
 --- a/drivers/pinctrl/pinctrl-rk805.c
 +++ b/drivers/pinctrl/pinctrl-rk805.c
 @@ -1,10 +1,12 @@
@@ -204,7 +202,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  static const struct rk805_pin_function rk805_pin_functions[] = {
  	{
  		.name = "gpio",
-@@ -105,6 +137,45 @@ static const struct rk805_pin_function rk805_pin_functions[] = {
+@@ -105,6 +137,45 @@ static const struct rk805_pin_function r
  	},
  };
  
@@ -250,7 +248,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  static const struct rk805_pin_group rk805_pin_groups[] = {
  	{
  		.name = "gpio0",
-@@ -118,6 +189,24 @@ static const struct rk805_pin_group rk805_pin_groups[] = {
+@@ -118,6 +189,24 @@ static const struct rk805_pin_group rk80
  	},
  };
  
@@ -275,7 +273,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  #define RK805_GPIO0_VAL_MSK	BIT(0)
  #define RK805_GPIO1_VAL_MSK	BIT(1)
  
-@@ -132,6 +221,40 @@ static const struct rk805_pin_config rk805_gpio_cfgs[] = {
+@@ -132,6 +221,40 @@ static const struct rk805_pin_config rk8
  	},
  };
  
@@ -316,7 +314,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  /* generic gpio chip */
  static int rk805_gpio_get(struct gpio_chip *chip, unsigned int offset)
  {
-@@ -289,19 +412,13 @@ static int _rk805_pinctrl_set_mux(struct pinctrl_dev *pctldev,
+@@ -289,19 +412,13 @@ static int _rk805_pinctrl_set_mux(struct
  	if (!pci->pin_cfg[offset].fun_msk)
  		return 0;
  
@@ -343,7 +341,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  
  	return 0;
  }
-@@ -317,6 +434,22 @@ static int rk805_pinctrl_set_mux(struct pinctrl_dev *pctldev,
+@@ -317,6 +434,22 @@ static int rk805_pinctrl_set_mux(struct
  	return _rk805_pinctrl_set_mux(pctldev, offset, mux);
  }
  
@@ -366,7 +364,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  static int rk805_pmx_gpio_set_direction(struct pinctrl_dev *pctldev,
  					struct pinctrl_gpio_range *range,
  					unsigned int offset, bool input)
-@@ -324,13 +457,6 @@ static int rk805_pmx_gpio_set_direction(struct pinctrl_dev *pctldev,
+@@ -324,13 +457,6 @@ static int rk805_pmx_gpio_set_direction(
  	struct rk805_pctrl_info *pci = pinctrl_dev_get_drvdata(pctldev);
  	int ret;
  
@@ -380,7 +378,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  	/* set direction */
  	if (!pci->pin_cfg[offset].dir_msk)
  		return 0;
-@@ -352,6 +478,7 @@ static const struct pinmux_ops rk805_pinmux_ops = {
+@@ -352,6 +478,7 @@ static const struct pinmux_ops rk805_pin
  	.get_function_name	= rk805_pinctrl_get_func_name,
  	.get_function_groups	= rk805_pinctrl_get_func_groups,
  	.set_mux		= rk805_pinctrl_set_mux,
@@ -388,7 +386,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  	.gpio_set_direction	= rk805_pmx_gpio_set_direction,
  };
  
-@@ -364,6 +491,7 @@ static int rk805_pinconf_get(struct pinctrl_dev *pctldev,
+@@ -364,6 +491,7 @@ static int rk805_pinconf_get(struct pinc
  
  	switch (param) {
  	case PIN_CONFIG_OUTPUT:
@@ -396,7 +394,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  		arg = rk805_gpio_get(&pci->gpio_chip, pin);
  		break;
  	default:
-@@ -393,6 +521,12 @@ static int rk805_pinconf_set(struct pinctrl_dev *pctldev,
+@@ -393,6 +521,12 @@ static int rk805_pinconf_set(struct pinc
  			rk805_gpio_set(&pci->gpio_chip, pin, arg);
  			rk805_pmx_gpio_set_direction(pctldev, NULL, pin, false);
  			break;
@@ -409,7 +407,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  		default:
  			dev_err(pci->dev, "Properties not supported\n");
  			return -ENOTSUPP;
-@@ -448,6 +582,18 @@ static int rk805_pinctrl_probe(struct platform_device *pdev)
+@@ -448,6 +582,18 @@ static int rk805_pinctrl_probe(struct pl
  		pci->pin_cfg = rk805_gpio_cfgs;
  		pci->gpio_chip.ngpio = ARRAY_SIZE(rk805_gpio_cfgs);
  		break;
@@ -428,7 +426,7 @@ index 7c1f7408fb9a..2639a9ee82cd 100644
  	default:
  		dev_err(&pdev->dev, "unsupported RK805 ID %lu\n",
  			pci->rk808->variant);
-@@ -488,5 +634,6 @@ static struct platform_driver rk805_pinctrl_driver = {
+@@ -488,5 +634,6 @@ static struct platform_driver rk805_pinc
  module_platform_driver(rk805_pinctrl_driver);
  
  MODULE_DESCRIPTION("RK805 pin control and GPIO driver");

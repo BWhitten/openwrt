@@ -104,11 +104,9 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  drivers/clk/rockchip/clk.h     |  3 +++
  2 files changed, 23 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/clk/rockchip/clk-cpu.c b/drivers/clk/rockchip/clk-cpu.c
-index 47288197c9d7..11aa2259b532 100644
 --- a/drivers/clk/rockchip/clk-cpu.c
 +++ b/drivers/clk/rockchip/clk-cpu.c
-@@ -166,10 +166,16 @@ static int rockchip_cpuclk_pre_rate_change(struct rockchip_cpuclk *cpuclk,
+@@ -166,10 +166,16 @@ static int rockchip_cpuclk_pre_rate_chan
  		}
  	}
  	/* select alternate parent */
@@ -129,7 +127,7 @@ index 47288197c9d7..11aa2259b532 100644
  
  	spin_unlock_irqrestore(cpuclk->lock, flags);
  	return 0;
-@@ -202,10 +208,16 @@ static int rockchip_cpuclk_post_rate_change(struct rockchip_cpuclk *cpuclk,
+@@ -202,10 +208,16 @@ static int rockchip_cpuclk_post_rate_cha
  	 * primary parent by the extra dividers that were needed for the alt.
  	 */
  
@@ -150,8 +148,6 @@ index 47288197c9d7..11aa2259b532 100644
  
  	/* remove dividers */
  	for (i = 0; i < reg_data->num_cores; i++) {
-diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
-index ee01739e4a7c..43a37a43b6f3 100644
 --- a/drivers/clk/rockchip/clk.h
 +++ b/drivers/clk/rockchip/clk.h
 @@ -389,6 +389,8 @@ struct rockchip_cpuclk_rate_table {

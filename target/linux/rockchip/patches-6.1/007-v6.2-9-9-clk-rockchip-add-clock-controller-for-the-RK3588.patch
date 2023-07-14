@@ -112,8 +112,6 @@ Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
  create mode 100644 drivers/clk/rockchip/clk-rk3588.c
  create mode 100644 drivers/clk/rockchip/rst-rk3588.c
 
-diff --git a/drivers/clk/rockchip/Kconfig b/drivers/clk/rockchip/Kconfig
-index 345a5d2a457c..cb45a3ad1f00 100644
 --- a/drivers/clk/rockchip/Kconfig
 +++ b/drivers/clk/rockchip/Kconfig
 @@ -99,4 +99,12 @@ config CLK_RK3568
@@ -129,18 +127,13 @@ index 345a5d2a457c..cb45a3ad1f00 100644
 +	  Build the driver for RK3588 Clock Driver.
 +
  endif
-diff --git a/drivers/clk/rockchip/Makefile b/drivers/clk/rockchip/Makefile
-index e8543876c056..36894f6a7022 100644
 --- a/drivers/clk/rockchip/Makefile
 +++ b/drivers/clk/rockchip/Makefile
-@@ -28,3 +28,4 @@ obj-$(CONFIG_CLK_RK3328)        += clk-rk3328.o
+@@ -28,3 +28,4 @@ obj-$(CONFIG_CLK_RK3328)        += clk-r
  obj-$(CONFIG_CLK_RK3368)        += clk-rk3368.o
  obj-$(CONFIG_CLK_RK3399)        += clk-rk3399.o
  obj-$(CONFIG_CLK_RK3568)	+= clk-rk3568.o
 +obj-$(CONFIG_CLK_RK3588)	+= clk-rk3588.o rst-rk3588.o
-diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-new file mode 100644
-index 000000000000..bcdb26021239
 --- /dev/null
 +++ b/drivers/clk/rockchip/clk-rk3588.c
 @@ -0,0 +1,2538 @@
@@ -2682,8 +2675,6 @@ index 000000000000..bcdb26021239
 +
 +MODULE_DESCRIPTION("Rockchip RK3588 Clock Driver");
 +MODULE_LICENSE("GPL");
-diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
-index 7ee231d9585d..758ebaf2236b 100644
 --- a/drivers/clk/rockchip/clk.h
 +++ b/drivers/clk/rockchip/clk.h
 @@ -235,6 +235,51 @@ struct clk;
@@ -2747,16 +2738,13 @@ index 7ee231d9585d..758ebaf2236b 100644
  #define ROCKCHIP_CPUCLK_MAX_CORES	4
  struct rockchip_cpuclk_rate_table {
  	unsigned long prate;
-@@ -978,4 +1023,6 @@ static inline void rockchip_register_softrst(struct device_node *np,
+@@ -978,4 +1023,6 @@ static inline void rockchip_register_sof
  	return rockchip_register_softrst_lut(np, NULL, num_regs, base, flags);
  }
  
 +void rk3588_rst_init(struct device_node *np, void __iomem *reg_base);
 +
  #endif
-diff --git a/drivers/clk/rockchip/rst-rk3588.c b/drivers/clk/rockchip/rst-rk3588.c
-new file mode 100644
-index 000000000000..e855bb8d5413
 --- /dev/null
 +++ b/drivers/clk/rockchip/rst-rk3588.c
 @@ -0,0 +1,857 @@
