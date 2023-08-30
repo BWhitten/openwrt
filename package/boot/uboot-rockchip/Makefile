@@ -67,6 +67,13 @@ define U-Boot/roc-cc-rk3328
     firefly_roc-rk3328-cc
 endef
 
+define U-Boot/rock64-rk3328
+  $(U-Boot/rk3328/Default)
+  NAME:=Rock64
+  BUILD_DEVICES:= \
+    pine64_rock64
+endef
+
 # RK3399 boards
 
 define U-Boot/Default/rk3399
@@ -153,6 +160,7 @@ UBOOT_TARGETS := \
   orangepi-r1-plus-rk3328 \
   orangepi-r1-plus-lts-rk3328 \
   roc-cc-rk3328 \
+  rock64-rk3328 \
   nanopi-r5c-rk3568 \
   nanopi-r5s-rk3568 \
   nanopi-r6s-rk3588
