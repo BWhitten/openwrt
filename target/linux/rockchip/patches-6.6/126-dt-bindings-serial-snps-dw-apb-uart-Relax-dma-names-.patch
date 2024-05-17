@@ -38,9 +38,9 @@ Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
 --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
 +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
-@@ -67,6 +67,18 @@ properties:
-       - const: baudclk
-       - const: apb_pclk
+@@ -75,6 +75,18 @@ properties:
+       - const: tx
+       - const: rx
  
 +  dmas:
 +    minItems: 2

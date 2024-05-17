@@ -19,7 +19,7 @@ Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 
 --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
 +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -223,6 +223,9 @@ patternProperties:
+@@ -278,6 +278,9 @@ $defs:
            Channel specifier required when using OP-TEE transport and
            protocol has a dedicated communication channel.
  
